@@ -1,0 +1,932 @@
+[
+  {
+    "id": "tab_array_main_flow",
+    "type": "tab",
+    "label": "Array 3645A Power Supply Controller & Curve Tracer (@grezoo)",
+    "disabled": false,
+    "info": "Array 364X / 3645A Programmable DC Power Supply Controller & I/V Curve Tracer by @grezoo"
+  },
+  {
+    "id": "ui_base_array",
+    "type": "ui_base",
+    "theme": {
+      "name": "theme-custom",
+      "lightTheme": {
+        "default": "#0094CE",
+        "baseColor": "#383f4a",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif",
+        "edited": true
+      },
+      "darkTheme": {
+        "default": "#097479",
+        "baseColor": "#383f4a",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif",
+        "edited": true
+      },
+      "customTheme": {
+        "name": "Array Carbon Instrument",
+        "default": "#383f4a",
+        "baseColor": "#383f4a",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif"
+      },
+      "themeState": {
+        "base-color": {
+          "default": "#383f4a",
+          "value": "#383f4a",
+          "edited": true
+        },
+        "page-titlebar-backgroundColor": {
+          "value": "#16191e",
+          "edited": true
+        },
+        "page-backgroundColor": {
+          "value": "#101215",
+          "edited": true
+        },
+        "page-sidebar-backgroundColor": {
+          "value": "#14171c",
+          "edited": true
+        },
+        "group-textColor": {
+          "value": "#e5e7eb",
+          "edited": true
+        },
+        "group-borderColor": {
+          "value": "#2c313a",
+          "edited": true
+        },
+        "group-backgroundColor": {
+          "value": "#181b21",
+          "edited": true
+        },
+        "widget-textColor": {
+          "value": "#f3f4f6",
+          "edited": true
+        },
+        "widget-backgroundColor": {
+          "value": "#282d36",
+          "edited": true
+        },
+        "widget-borderColor": {
+          "value": "#101215",
+          "edited": true
+        },
+        "base-font": {
+          "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif"
+        }
+      }
+    },
+    "site": {
+      "name": "ARRAY® 3645A Precision DC Power Supply • @grezoo",
+      "hideToolbar": "false",
+      "allowSwipe": "false",
+      "lockMenu": "false",
+      "allowTempTheme": "true",
+      "dateFormat": "YYYY-MM-DD HH:mm:ss",
+      "sizes": {
+        "sx": 48,
+        "sy": 48,
+        "gx": 8,
+        "gy": 8,
+        "cx": 8,
+        "cy": 8,
+        "px": 0,
+        "py": 0
+      }
+    }
+  },
+  {
+    "id": "ui_tab_operator",
+    "type": "ui_tab",
+    "name": "Main Instrument & Operator",
+    "icon": "tune",
+    "order": 1,
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "ui_tab_settings",
+    "type": "ui_tab",
+    "name": "Settings & Configuration",
+    "icon": "settings",
+    "order": 2,
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "ui_group_panel1_meters",
+    "type": "ui_group",
+    "name": "INSTRUMENT METERS & TELEMETRY (@grezoo)",
+    "tab": "ui_tab_operator",
+    "order": 1,
+    "disp": false,
+    "width": "24",
+    "collapse": false
+  },
+  {
+    "id": "ui_group_panel2_controls",
+    "type": "ui_group",
+    "name": "OUTPUT & SETPOINT CONTROL (10 mV RESOLUTION)",
+    "tab": "ui_tab_operator",
+    "order": 2,
+    "disp": false,
+    "width": "24",
+    "collapse": false
+  },
+  {
+    "id": "ui_group_iv_sweep",
+    "type": "ui_group",
+    "name": "I/V CHARACTERISTIC ANALYZER & CURVE TRACER",
+    "tab": "ui_tab_operator",
+    "order": 3,
+    "disp": false,
+    "width": "24",
+    "collapse": false
+  },
+  {
+    "id": "ui_group_trends",
+    "type": "ui_group",
+    "name": "TIME-DOMAIN TREND RECORDER & CSV DATA LOGGER",
+    "tab": "ui_tab_operator",
+    "order": 4,
+    "disp": true,
+    "width": "24",
+    "collapse": false
+  },
+  {
+    "id": "ui_group_comm",
+    "type": "ui_group",
+    "name": "Serial Communication & Simulator Settings",
+    "tab": "ui_tab_settings",
+    "order": 1,
+    "disp": true,
+    "width": "12",
+    "collapse": false
+  },
+  {
+    "id": "ui_group_safety",
+    "type": "ui_group",
+    "name": "Software Safety Limits & Virtual Load",
+    "tab": "ui_tab_settings",
+    "order": 2,
+    "disp": true,
+    "width": "12",
+    "collapse": false
+  },
+  {
+    "id": "ui_group_diag_meters",
+    "type": "ui_group",
+    "name": "Auxiliary Diagnostic Meters & Controls",
+    "tab": "ui_tab_settings",
+    "order": 3,
+    "disp": true,
+    "width": "24",
+    "collapse": true
+  },
+  {
+    "id": "ui_template_panel1_meters",
+    "type": "ui_template",
+    "z": "tab_array_main_flow",
+    "group": "ui_group_panel1_meters",
+    "name": "Panel 1: ARRAY 3645A Meters & Telemetry",
+    "order": 1,
+    "width": "24",
+    "height": "7",
+    "format": "\n<style>\n  /* Global Carbon-Grey Industrial Instrument Layout & Node-RED CSS Override Reset */\n  body, #nr-dashboard, .nr-dashboard-theme {\n    background-color: #101215 !important;\n    color: #e5e7eb !important;\n  }\n  #nr-dashboard md-content {\n    background-color: #101215 !important;\n  }\n  #nr-dashboard ui-card-panel {\n    background: linear-gradient(180deg, #1c1f25 0%, #14171b 100%) !important;\n    border: 1px solid #2e343e !important;\n    border-top: 2px solid #454d5b !important;\n    border-radius: 6px !important;\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255,255,255,0.05) !important;\n  }\n  #nr-dashboard ui-card-panel .nr-dashboard-cardpanel > p.nr-dashboard-cardtitle {\n    background: linear-gradient(90deg, #181b20 0%, #232830 50%, #181b20 100%) !important;\n    color: #d1d5db !important;\n    font-family: 'Segoe UI', Roboto, Helvetica, sans-serif !important;\n    font-size: 12px !important;\n    font-weight: 700 !important;\n    letter-spacing: 1.5px !important;\n    text-transform: uppercase !important;\n    padding: 8px 16px !important;\n    margin: 0 !important;\n    border-bottom: 1px solid #2e343e !important;\n  }\n  #nr-dashboard md-card.nr-dashboard-template {\n    background: transparent !important;\n    box-shadow: none !important;\n    padding: 4px 6px !important;\n    margin: 0 !important;\n    overflow: hidden !important;\n  }\n  #nr-dashboard .nr-dashboard-template svg path.gauge-arc {\n    fill: none !important;\n  }\n\n  .carbon-chassis {\n    font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;\n    color: #e5e7eb;\n    background:\n      radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%),\n      linear-gradient(180deg, #1d2026 0%, #15181c 100%);\n    border: 1px solid #323842;\n    border-radius: 6px;\n    padding: 12px 16px;\n    box-sizing: border-box;\n    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 12px rgba(0,0,0,0.45);\n  }\n  .inst-header-bar {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    flex-wrap: wrap;\n    gap: 10px;\n    padding-bottom: 10px;\n    margin-bottom: 12px;\n    border-bottom: 1px solid #2c313a;\n  }\n  .inst-brand-group {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n  }\n  .array-nameplate {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    background: linear-gradient(180deg, #252932 0%, #171a20 100%);\n    border: 1px solid #3f4652;\n    border-left: 4px solid #dc2626;\n    padding: 5px 14px;\n    border-radius: 4px;\n    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);\n  }\n  .array-brand-title {\n    font-size: 20px;\n    font-weight: 900;\n    letter-spacing: 2.5px;\n    color: #f9fafb;\n    line-height: 1.1;\n  }\n  .array-brand-sub {\n    font-size: 10px;\n    font-weight: 600;\n    color: #9ca3af;\n    letter-spacing: 1.2px;\n    text-transform: uppercase;\n    display: block;\n    margin-top: 2px;\n  }\n  .inst-status-cluster {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    flex-wrap: wrap;\n    background: #101216;\n    padding: 5px 12px;\n    border-radius: 4px;\n    border: 1px solid #282d35;\n    box-shadow: inset 0 1px 4px rgba(0,0,0,0.7);\n  }\n  .status-pill {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    font-size: 11px;\n    font-weight: 700;\n    letter-spacing: 0.7px;\n    color: #9ca3af;\n    padding: 2px 7px;\n    border-radius: 3px;\n    background: #171a20;\n    border: 1px solid #262b33;\n  }\n  .led-indicator {\n    width: 8px;\n    height: 8px;\n    border-radius: 50%;\n    background: #374151;\n    border: 1px solid #111827;\n    display: inline-block;\n  }\n  .led-green { background: #10b981; box-shadow: 0 0 8px #10b981; }\n  .led-amber { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; }\n  .led-red   { background: #ef4444; box-shadow: 0 0 8px #ef4444; }\n  .led-ice   { background: #38bdf8; box-shadow: 0 0 8px #38bdf8; }\n\n  .author-plate {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    background: linear-gradient(180deg, #23272f 0%, #171a20 100%);\n    border: 1px solid #383f4b;\n    padding: 5px 12px;\n    border-radius: 4px;\n    font-size: 11px;\n    font-weight: 600;\n    color: #9ca3af;\n    letter-spacing: 0.8px;\n  }\n  .author-plate strong {\n    color: #f3f4f6;\n    font-family: 'Consolas', monospace;\n    font-size: 12.5px;\n    font-weight: 700;\n  }\n\n  .inst-meters-row {\n    display: grid;\n    grid-template-columns: repeat(3, 1fr);\n    gap: 14px;\n  }\n  .meter-bay {\n    background: linear-gradient(180deg, #13161a 0%, #0d0f12 100%);\n    border: 1px solid #2a2f38;\n    border-top: 1px solid #1f242b;\n    border-radius: 5px;\n    padding: 10px 14px;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    box-shadow: inset 0 2px 10px rgba(0,0,0,0.85);\n  }\n  .meter-bay-header {\n    width: 100%;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    margin-bottom: 2px;\n    border-bottom: 1px solid #1e2229;\n    padding-bottom: 4px;\n  }\n  .meter-bay-title {\n    font-size: 11.5px;\n    font-weight: 700;\n    letter-spacing: 1.1px;\n    color: #d1d5db;\n    text-transform: uppercase;\n  }\n  .meter-bay-range {\n    font-size: 10px;\n    font-family: 'Consolas', monospace;\n    color: #9ca3af;\n    background: #1b1f26;\n    border: 1px solid #2e343e;\n    padding: 1px 6px;\n    border-radius: 3px;\n  }\n  .lcd-readout-bar {\n    width: 100%;\n    background: #090b0d;\n    border: 1px solid #252a32;\n    border-radius: 4px;\n    padding: 6px 12px;\n    margin-top: 4px;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    box-sizing: border-box;\n    box-shadow: inset 0 2px 5px rgba(0,0,0,0.95);\n  }\n  .lcd-primary-val {\n    font-family: 'Consolas', 'Courier New', monospace;\n    font-size: 24px;\n    font-weight: 700;\n    letter-spacing: 0.8px;\n    line-height: 1.1;\n  }\n  .lcd-secondary-val {\n    font-family: 'Consolas', 'Courier New', monospace;\n    font-size: 14px;\n    font-weight: 700;\n    color: #d1d5db;\n    line-height: 1.1;\n  }\n  .lcd-micro-label {\n    font-size: 9.5px;\n    font-weight: 700;\n    color: #6b7280;\n    letter-spacing: 0.8px;\n    text-transform: uppercase;\n    margin-bottom: 2px;\n  }\n</style>\n\n<div class=\"carbon-chassis\">\n  <!-- TOP INSTRUMENT HEADER BAR -->\n  <div class=\"inst-header-bar\">\n    <div class=\"inst-brand-group\">\n      <div class=\"array-nameplate\">\n        <svg width=\"28\" height=\"28\" viewBox=\"0 0 36 36\" style=\"fill:none !important;\">\n          <polygon points=\"18,3 33,31 25,31 18,16 11,31 3,31\" style=\"fill:#dc2626 !important;\"/>\n          <polygon points=\"18,19 23,31 13,31\" style=\"fill:#9ca3af !important;\"/>\n        </svg>\n        <div>\n          <div class=\"array-brand-title\">ARRAY<span style=\"font-size:12px; font-weight:700; color:#9ca3af; margin-left:6px;\">3645A</span></div>\n          <span class=\"array-brand-sub\">PRECISION PROGRAMMABLE DC POWER SUPPLY</span>\n        </div>\n      </div>\n    </div>\n\n    <!-- CENTER HARDWARE TELEMETRY STATUS BAR -->\n    <div class=\"inst-status-cluster\">\n      <div class=\"status-pill\">\n        <span class=\"led-indicator led-red\" id=\"led_dot_out\"></span>\n        <span id=\"led_lbl_out\" style=\"color:#e5e7eb;\">STANDBY (OFF)</span>\n      </div>\n      <div class=\"status-pill\">\n        <span class=\"led-indicator led-green\" id=\"led_dot_cv\"></span>\n        <span id=\"led_lbl_cv\" style=\"color:#d1d5db;\">CV MODE</span>\n      </div>\n      <div class=\"status-pill\">\n        <span class=\"led-indicator\" id=\"led_dot_cc\"></span>\n        <span id=\"led_lbl_cc\">CC LIMIT</span>\n      </div>\n      <div class=\"status-pill\">\n        <span class=\"led-indicator led-ice\" id=\"led_dot_rem\"></span>\n        <span id=\"led_lbl_rem\" style=\"color:#d1d5db;\">REMOTE</span>\n      </div>\n      <div class=\"status-pill\" style=\"font-family:Consolas,monospace; color:#9ca3af;\" id=\"inst_conn_text\">\n        COM3 @ 19200 BAUD\n      </div>\n    </div>\n\n    <!-- RIGHT ENGINEER NAMEPLATE -->\n    <div class=\"author-plate\">\n      <span>ENGINEERED BY:</span>\n      <strong>@grezoo</strong>\n    </div>\n  </div>\n\n  <!-- THREE PRECISION ANALOG + DIGITAL INSTRUMENT METERS -->\n  <div class=\"inst-meters-row\">\n    <!-- METER 1: VOLTAGE (0 - 30.00 V, 10mV resolution) -->\n    <div class=\"meter-bay\">\n      <div class=\"meter-bay-header\">\n        <span class=\"meter-bay-title\">OUTPUT VOLTAGE (U)</span>\n        <span class=\"meter-bay-range\">0 – 30.00 V • 10mV</span>\n      </div>\n      <svg viewBox=\"0 0 260 135\" width=\"100%\" height=\"130\" style=\"max-width:280px; overflow:visible;\">\n        <path class=\"gauge-arc\" d=\"M 32 120 A 98 98 0 0 1 228 120\" style=\"fill:none !important; stroke:#22262e; stroke-width:10px; stroke-linecap:butt;\"/>\n        <path id=\"arc_set_v\" class=\"gauge-arc\" d=\"M 32 120 A 98 98 0 0 1 228 120\" style=\"fill:none !important; stroke:rgba(16, 185, 129, 0.25); stroke-width:10px; stroke-dasharray:0 400; stroke-linecap:butt;\"/>\n        <path id=\"arc_meas_v\" class=\"gauge-arc\" d=\"M 32 120 A 98 98 0 0 1 228 120\" style=\"fill:none !important; stroke:#10b981; stroke-width:5px; stroke-dasharray:0 400; stroke-linecap:butt;\"/>\n        <line x1=\"35.0\" y1=\"120.0\" x2=\"24.0\" y2=\"120.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"30.5\" y1=\"109.5\" x2=\"24.6\" y2=\"108.9\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"32.2\" y1=\"99.2\" x2=\"26.3\" y2=\"98.0\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"34.9\" y1=\"89.1\" x2=\"29.2\" y2=\"87.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"38.6\" y1=\"79.3\" x2=\"33.2\" y2=\"76.9\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"47.7\" y1=\"72.5\" x2=\"38.2\" y2=\"67.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"49.1\" y1=\"61.2\" x2=\"44.2\" y2=\"57.7\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"55.7\" y1=\"53.1\" x2=\"51.2\" y2=\"49.1\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"63.1\" y1=\"45.7\" x2=\"59.1\" y2=\"41.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"71.2\" y1=\"39.1\" x2=\"67.7\" y2=\"34.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"82.5\" y1=\"37.7\" x2=\"77.0\" y2=\"28.2\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"89.3\" y1=\"28.6\" x2=\"86.9\" y2=\"23.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"99.1\" y1=\"24.9\" x2=\"97.2\" y2=\"19.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"109.2\" y1=\"22.2\" x2=\"108.0\" y2=\"16.3\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"119.5\" y1=\"20.5\" x2=\"118.9\" y2=\"14.6\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"130.0\" y1=\"25.0\" x2=\"130.0\" y2=\"14.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"140.5\" y1=\"20.5\" x2=\"141.1\" y2=\"14.6\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"150.8\" y1=\"22.2\" x2=\"152.0\" y2=\"16.3\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"160.9\" y1=\"24.9\" x2=\"162.8\" y2=\"19.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"170.7\" y1=\"28.6\" x2=\"173.1\" y2=\"23.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"177.5\" y1=\"37.7\" x2=\"183.0\" y2=\"28.2\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"188.8\" y1=\"39.1\" x2=\"192.3\" y2=\"34.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"196.9\" y1=\"45.7\" x2=\"200.9\" y2=\"41.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"204.3\" y1=\"53.1\" x2=\"208.8\" y2=\"49.1\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"210.9\" y1=\"61.2\" x2=\"215.8\" y2=\"57.7\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"212.3\" y1=\"72.5\" x2=\"221.8\" y2=\"67.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"221.4\" y1=\"79.3\" x2=\"226.8\" y2=\"76.9\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"225.1\" y1=\"89.1\" x2=\"230.8\" y2=\"87.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"227.8\" y1=\"99.2\" x2=\"233.7\" y2=\"98.0\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"229.5\" y1=\"109.5\" x2=\"235.4\" y2=\"108.9\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"225.0\" y1=\"120.0\" x2=\"236.0\" y2=\"120.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/>\n        <text x=\"12\" y=\"124\" style=\"fill:#9ca3af !important; font-size:10px; font-family:Consolas,monospace; font-weight:700;\">0</text>\n        <text x=\"27\" y=\"64\" style=\"fill:#9ca3af !important; font-size:10px; font-family:Consolas,monospace;\">5</text>\n        <text x=\"68\" y=\"25\" style=\"fill:#9ca3af !important; font-size:10px; font-family:Consolas,monospace;\">10</text>\n        <text x=\"123\" y=\"11\" style=\"fill:#e5e7eb !important; font-size:10px; font-family:Consolas,monospace; font-weight:700;\">15V</text>\n        <text x=\"178\" y=\"25\" style=\"fill:#9ca3af !important; font-size:10px; font-family:Consolas,monospace;\">20</text>\n        <text x=\"220\" y=\"64\" style=\"fill:#f59e0b !important; font-size:10px; font-family:Consolas,monospace;\">25</text>\n        <text x=\"236\" y=\"124\" style=\"fill:#ef4444 !important; font-size:10px; font-family:Consolas,monospace; font-weight:700;\">30</text>\n        <g id=\"needle_set_v\" transform=\"rotate(-90, 130, 120)\" style=\"transition: transform 0.2s ease-out;\">\n          <line x1=\"130\" y1=\"120\" x2=\"130\" y2=\"28\" stroke=\"#6ee7b7\" stroke-width=\"1.5\" stroke-dasharray=\"3 3\"/>\n          <polygon points=\"130,20 126,28 134,28\" style=\"fill:#6ee7b7 !important;\"/>\n        </g>\n        <g id=\"needle_meas_v\" transform=\"rotate(-90, 130, 120)\" style=\"transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);\">\n          <line x1=\"130\" y1=\"120\" x2=\"130\" y2=\"24\" stroke=\"#f3f4f6\" stroke-width=\"2.6\" stroke-linecap=\"round\"/>\n          <line x1=\"130\" y1=\"45\" x2=\"130\" y2=\"24\" stroke=\"#10b981\" stroke-width=\"3.2\" stroke-linecap=\"round\"/>\n        </g>\n        <circle cx=\"130\" cy=\"120\" r=\"8\" style=\"fill:#262b33 !important; stroke:#4b5563; stroke-width:1.5px;\"/>\n        <circle cx=\"130\" cy=\"120\" r=\"3\" style=\"fill:#9ca3af !important;\"/>\n      </svg>\n      <div class=\"lcd-readout-bar\">\n        <div>\n          <div class=\"lcd-micro-label\">MEASURED VOLTAGE (U)</div>\n          <div class=\"lcd-primary-val\" id=\"vfd_meas_v\" style=\"color:#10b981;\">0.00 V</div>\n        </div>\n        <div style=\"text-align:right;\">\n          <div class=\"lcd-micro-label\">SETPOINT (U_SET)</div>\n          <div class=\"lcd-secondary-val\" id=\"vfd_set_v\" style=\"color:#a7f3d0;\">0.00 V</div>\n        </div>\n      </div>\n    </div>\n\n    <!-- METER 2: CURRENT (0 - 3.000 A, 1mA resolution) -->\n    <div class=\"meter-bay\">\n      <div class=\"meter-bay-header\">\n        <span class=\"meter-bay-title\">LOAD CURRENT (I)</span>\n        <span class=\"meter-bay-range\">0 – 3.000 A • 1mA</span>\n      </div>\n      <svg viewBox=\"0 0 260 135\" width=\"100%\" height=\"130\" style=\"max-width:280px; overflow:visible;\">\n        <path class=\"gauge-arc\" d=\"M 32 120 A 98 98 0 0 1 228 120\" style=\"fill:none !important; stroke:#22262e; stroke-width:10px; stroke-linecap:butt;\"/>\n        <path id=\"arc_set_i\" class=\"gauge-arc\" d=\"M 32 120 A 98 98 0 0 1 228 120\" style=\"fill:none !important; stroke:rgba(245, 158, 11, 0.25); stroke-width:10px; stroke-dasharray:0 400; stroke-linecap:butt;\"/>\n        <path id=\"arc_meas_i\" class=\"gauge-arc\" d=\"M 32 120 A 98 98 0 0 1 228 120\" style=\"fill:none !important; stroke:#f59e0b; stroke-width:5px; stroke-dasharray:0 400; stroke-linecap:butt;\"/>\n        <line x1=\"35.0\" y1=\"120.0\" x2=\"24.0\" y2=\"120.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"30.5\" y1=\"109.5\" x2=\"24.6\" y2=\"108.9\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"32.2\" y1=\"99.2\" x2=\"26.3\" y2=\"98.0\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"34.9\" y1=\"89.1\" x2=\"29.2\" y2=\"87.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"38.6\" y1=\"79.3\" x2=\"33.2\" y2=\"76.9\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"47.7\" y1=\"72.5\" x2=\"38.2\" y2=\"67.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"49.1\" y1=\"61.2\" x2=\"44.2\" y2=\"57.7\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"55.7\" y1=\"53.1\" x2=\"51.2\" y2=\"49.1\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"63.1\" y1=\"45.7\" x2=\"59.1\" y2=\"41.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"71.2\" y1=\"39.1\" x2=\"67.7\" y2=\"34.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"82.5\" y1=\"37.7\" x2=\"77.0\" y2=\"28.2\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"89.3\" y1=\"28.6\" x2=\"86.9\" y2=\"23.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"99.1\" y1=\"24.9\" x2=\"97.2\" y2=\"19.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"109.2\" y1=\"22.2\" x2=\"108.0\" y2=\"16.3\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"119.5\" y1=\"20.5\" x2=\"118.9\" y2=\"14.6\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"130.0\" y1=\"25.0\" x2=\"130.0\" y2=\"14.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"140.5\" y1=\"20.5\" x2=\"141.1\" y2=\"14.6\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"150.8\" y1=\"22.2\" x2=\"152.0\" y2=\"16.3\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"160.9\" y1=\"24.9\" x2=\"162.8\" y2=\"19.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"170.7\" y1=\"28.6\" x2=\"173.1\" y2=\"23.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"177.5\" y1=\"37.7\" x2=\"183.0\" y2=\"28.2\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"188.8\" y1=\"39.1\" x2=\"192.3\" y2=\"34.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"196.9\" y1=\"45.7\" x2=\"200.9\" y2=\"41.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"204.3\" y1=\"53.1\" x2=\"208.8\" y2=\"49.1\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"210.9\" y1=\"61.2\" x2=\"215.8\" y2=\"57.7\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"212.3\" y1=\"72.5\" x2=\"221.8\" y2=\"67.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"221.4\" y1=\"79.3\" x2=\"226.8\" y2=\"76.9\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"225.1\" y1=\"89.1\" x2=\"230.8\" y2=\"87.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"227.8\" y1=\"99.2\" x2=\"233.7\" y2=\"98.0\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"229.5\" y1=\"109.5\" x2=\"235.4\" y2=\"108.9\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"225.0\" y1=\"120.0\" x2=\"236.0\" y2=\"120.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/>\n        <text x=\"10\" y=\"124\" style=\"fill:#9ca3af !important; font-size:10px; font-family:Consolas,monospace; font-weight:700;\">0.0</text>\n        <text x=\"24\" y=\"64\" style=\"fill:#9ca3af !important; font-size:10px; font-family:Consolas,monospace;\">0.5</text>\n        <text x=\"65\" y=\"25\" style=\"fill:#9ca3af !important; font-size:10px; font-family:Consolas,monospace;\">1.0</text>\n        <text x=\"118\" y=\"11\" style=\"fill:#e5e7eb !important; font-size:10px; font-family:Consolas,monospace; font-weight:700;\">1.5A</text>\n        <text x=\"176\" y=\"25\" style=\"fill:#9ca3af !important; font-size:10px; font-family:Consolas,monospace;\">2.0</text>\n        <text x=\"218\" y=\"64\" style=\"fill:#f59e0b !important; font-size:10px; font-family:Consolas,monospace;\">2.5</text>\n        <text x=\"234\" y=\"124\" style=\"fill:#ef4444 !important; font-size:10px; font-family:Consolas,monospace; font-weight:700;\">3.0</text>\n        <g id=\"needle_set_i\" transform=\"rotate(-90, 130, 120)\" style=\"transition: transform 0.2s ease-out;\">\n          <line x1=\"130\" y1=\"120\" x2=\"130\" y2=\"28\" stroke=\"#fcd34d\" stroke-width=\"1.5\" stroke-dasharray=\"3 3\"/>\n          <polygon points=\"130,20 126,28 134,28\" style=\"fill:#fcd34d !important;\"/>\n        </g>\n        <g id=\"needle_meas_i\" transform=\"rotate(-90, 130, 120)\" style=\"transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);\">\n          <line x1=\"130\" y1=\"120\" x2=\"130\" y2=\"24\" stroke=\"#f3f4f6\" stroke-width=\"2.6\" stroke-linecap=\"round\"/>\n          <line x1=\"130\" y1=\"45\" x2=\"130\" y2=\"24\" stroke=\"#f59e0b\" stroke-width=\"3.2\" stroke-linecap=\"round\"/>\n        </g>\n        <circle cx=\"130\" cy=\"120\" r=\"8\" style=\"fill:#262b33 !important; stroke:#4b5563; stroke-width:1.5px;\"/>\n        <circle cx=\"130\" cy=\"120\" r=\"3\" style=\"fill:#9ca3af !important;\"/>\n      </svg>\n      <div class=\"lcd-readout-bar\">\n        <div>\n          <div class=\"lcd-micro-label\">MEASURED CURRENT (I)</div>\n          <div class=\"lcd-primary-val\" id=\"vfd_meas_i\" style=\"color:#f59e0b;\">0.000 A</div>\n        </div>\n        <div style=\"text-align:right;\">\n          <div class=\"lcd-micro-label\">CURRENT LIMIT (I_MAX)</div>\n          <div class=\"lcd-secondary-val\" id=\"vfd_set_i\" style=\"color:#fde68a;\">0.500 A</div>\n        </div>\n      </div>\n    </div>\n\n    <!-- METER 3: POWER (0 - 90.00 W) -->\n    <div class=\"meter-bay\">\n      <div class=\"meter-bay-header\">\n        <span class=\"meter-bay-title\">OUTPUT POWER (P)</span>\n        <span class=\"meter-bay-range\">0 – 90.00 W • R_LOAD</span>\n      </div>\n      <svg viewBox=\"0 0 260 135\" width=\"100%\" height=\"130\" style=\"max-width:280px; overflow:visible;\">\n        <path class=\"gauge-arc\" d=\"M 32 120 A 98 98 0 0 1 228 120\" style=\"fill:none !important; stroke:#22262e; stroke-width:10px; stroke-linecap:butt;\"/>\n        <path id=\"arc_set_p\" class=\"gauge-arc\" d=\"M 32 120 A 98 98 0 0 1 228 120\" style=\"fill:none !important; stroke:rgba(56, 189, 248, 0.22); stroke-width:10px; stroke-dasharray:0 400; stroke-linecap:butt;\"/>\n        <path id=\"arc_meas_p\" class=\"gauge-arc\" d=\"M 32 120 A 98 98 0 0 1 228 120\" style=\"fill:none !important; stroke:#38bdf8; stroke-width:5px; stroke-dasharray:0 400; stroke-linecap:butt;\"/>\n        <line x1=\"35.0\" y1=\"120.0\" x2=\"24.0\" y2=\"120.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"30.5\" y1=\"109.5\" x2=\"24.6\" y2=\"108.9\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"32.2\" y1=\"99.2\" x2=\"26.3\" y2=\"98.0\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"34.9\" y1=\"89.1\" x2=\"29.2\" y2=\"87.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"38.6\" y1=\"79.3\" x2=\"33.2\" y2=\"76.9\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"47.7\" y1=\"72.5\" x2=\"38.2\" y2=\"67.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"49.1\" y1=\"61.2\" x2=\"44.2\" y2=\"57.7\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"55.7\" y1=\"53.1\" x2=\"51.2\" y2=\"49.1\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"63.1\" y1=\"45.7\" x2=\"59.1\" y2=\"41.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"71.2\" y1=\"39.1\" x2=\"67.7\" y2=\"34.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"82.5\" y1=\"37.7\" x2=\"77.0\" y2=\"28.2\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"89.3\" y1=\"28.6\" x2=\"86.9\" y2=\"23.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"99.1\" y1=\"24.9\" x2=\"97.2\" y2=\"19.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"109.2\" y1=\"22.2\" x2=\"108.0\" y2=\"16.3\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"119.5\" y1=\"20.5\" x2=\"118.9\" y2=\"14.6\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"130.0\" y1=\"25.0\" x2=\"130.0\" y2=\"14.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"140.5\" y1=\"20.5\" x2=\"141.1\" y2=\"14.6\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"150.8\" y1=\"22.2\" x2=\"152.0\" y2=\"16.3\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"160.9\" y1=\"24.9\" x2=\"162.8\" y2=\"19.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"170.7\" y1=\"28.6\" x2=\"173.1\" y2=\"23.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"177.5\" y1=\"37.7\" x2=\"183.0\" y2=\"28.2\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"188.8\" y1=\"39.1\" x2=\"192.3\" y2=\"34.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"196.9\" y1=\"45.7\" x2=\"200.9\" y2=\"41.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"204.3\" y1=\"53.1\" x2=\"208.8\" y2=\"49.1\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"210.9\" y1=\"61.2\" x2=\"215.8\" y2=\"57.7\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"212.3\" y1=\"72.5\" x2=\"221.8\" y2=\"67.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/><line x1=\"221.4\" y1=\"79.3\" x2=\"226.8\" y2=\"76.9\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"225.1\" y1=\"89.1\" x2=\"230.8\" y2=\"87.2\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"227.8\" y1=\"99.2\" x2=\"233.7\" y2=\"98.0\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"229.5\" y1=\"109.5\" x2=\"235.4\" y2=\"108.9\" stroke=\"#4b5563\" stroke-width=\"1\" style=\"fill:none !important;\"/><line x1=\"225.0\" y1=\"120.0\" x2=\"236.0\" y2=\"120.0\" stroke=\"#9ca3af\" stroke-width=\"1.8\" style=\"fill:none !important;\"/>\n        <text x=\"12\" y=\"124\" style=\"fill:#9ca3af !important; font-size:10px; font-family:Consolas,monospace; font-weight:700;\">0</text>\n        <text x=\"25\" y=\"64\" style=\"fill:#9ca3af !important; font-size:10px; font-family:Consolas,monospace;\">15</text>\n        <text x=\"66\" y=\"25\" style=\"fill:#9ca3af !important; font-size:10px; font-family:Consolas,monospace;\">30</text>\n        <text x=\"121\" y=\"11\" style=\"fill:#e5e7eb !important; font-size:10px; font-family:Consolas,monospace; font-weight:700;\">45W</text>\n        <text x=\"178\" y=\"25\" style=\"fill:#9ca3af !important; font-size:10px; font-family:Consolas,monospace;\">60</text>\n        <text x=\"220\" y=\"64\" style=\"fill:#f59e0b !important; font-size:10px; font-family:Consolas,monospace;\">75</text>\n        <text x=\"236\" y=\"124\" style=\"fill:#ef4444 !important; font-size:10px; font-family:Consolas,monospace; font-weight:700;\">90</text>\n        <g id=\"needle_set_p\" transform=\"rotate(-90, 130, 120)\" style=\"transition: transform 0.2s ease-out;\">\n          <line x1=\"130\" y1=\"120\" x2=\"130\" y2=\"28\" stroke=\"#7dd3fc\" stroke-width=\"1.5\" stroke-dasharray=\"3 3\"/>\n          <polygon points=\"130,20 126,28 134,28\" style=\"fill:#7dd3fc !important;\"/>\n        </g>\n        <g id=\"needle_meas_p\" transform=\"rotate(-90, 130, 120)\" style=\"transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);\">\n          <line x1=\"130\" y1=\"120\" x2=\"130\" y2=\"24\" stroke=\"#f3f4f6\" stroke-width=\"2.6\" stroke-linecap=\"round\"/>\n          <line x1=\"130\" y1=\"45\" x2=\"130\" y2=\"24\" stroke=\"#38bdf8\" stroke-width=\"3.2\" stroke-linecap=\"round\"/>\n        </g>\n        <circle cx=\"130\" cy=\"120\" r=\"8\" style=\"fill:#262b33 !important; stroke:#4b5563; stroke-width:1.5px;\"/>\n        <circle cx=\"130\" cy=\"120\" r=\"3\" style=\"fill:#9ca3af !important;\"/>\n      </svg>\n      <div class=\"lcd-readout-bar\">\n        <div>\n          <div class=\"lcd-micro-label\">MEASURED POWER (P)</div>\n          <div class=\"lcd-primary-val\" id=\"vfd_meas_p\" style=\"color:#38bdf8;\">0.00 W</div>\n        </div>\n        <div style=\"text-align:right;\">\n          <div class=\"lcd-micro-label\">IMPEDANCE / P_LIM</div>\n          <div class=\"lcd-secondary-val\" id=\"vfd_set_p\" style=\"color:#bae6fd;\">-- Ω</div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<script>\n(function(scope) {\n  const ARC_LEN = 308;\n\n  function setNeedleAndArc(needleId, arcId, val, maxVal) {\n    const ratio = Math.max(0, Math.min(1, (Number(val) || 0) / (maxVal || 1)));\n    const deg = -90 + (ratio * 180);\n    const needle = document.getElementById(needleId);\n    if (needle) {\n      needle.setAttribute('transform', 'rotate(' + deg.toFixed(1) + ', 130, 120)');\n    }\n    const arc = document.getElementById(arcId);\n    if (arc) {\n      const filled = (ratio * ARC_LEN).toFixed(1);\n      arc.style.strokeDasharray = filled + ' 400';\n    }\n  }\n\n  scope.$watch('msg', function(msg) {\n    if (!msg || !msg.payload) return;\n    const d = msg.payload;\n\n    const vMeas = Number(d.voltage_V ?? 0);\n    const iMeas = Number(d.current_A ?? 0);\n    const pMeas = Number(d.power_W ?? 0);\n    const vSet  = Number(d.setVoltage_V ?? 0);\n    const iMax  = Math.max(0.010, Number(d.maxCurrent_A ?? 0.1));\n    const pEnv  = Math.min(90, vSet * iMax);\n    const outOn = !!d.outputOn;\n    const mode  = d.mode || 'CV';\n\n    setNeedleAndArc('needle_set_v',  'arc_set_v',  vSet,  30.0);\n    setNeedleAndArc('needle_meas_v', 'arc_meas_v', outOn ? vMeas : vSet, 30.0);\n\n    setNeedleAndArc('needle_set_i',  'arc_set_i',  iMax,  3.0);\n    setNeedleAndArc('needle_meas_i', 'arc_meas_i', iMeas, 3.0);\n\n    setNeedleAndArc('needle_set_p',  'arc_set_p',  pEnv,  90.0);\n    setNeedleAndArc('needle_meas_p', 'arc_meas_p', pMeas, 90.0);\n\n    const elMv = document.getElementById('vfd_meas_v');\n    if (elMv) elMv.textContent = vMeas.toFixed(2) + ' V';\n    const elSv = document.getElementById('vfd_set_v');\n    if (elSv) elSv.textContent = vSet.toFixed(2) + ' V';\n\n    const elMi = document.getElementById('vfd_meas_i');\n    if (elMi) elMi.textContent = iMeas.toFixed(3) + ' A';\n    const elSi = document.getElementById('vfd_set_i');\n    if (elSi) elSi.textContent = iMax.toFixed(3) + ' A';\n\n    const elMp = document.getElementById('vfd_meas_p');\n    if (elMp) elMp.textContent = pMeas.toFixed(2) + ' W';\n    const elSp = document.getElementById('vfd_set_p');\n    if (elSp) {\n      if (outOn && iMeas > 0.002) {\n        elSp.textContent = (vMeas / iMeas).toFixed(1) + ' Ω';\n      } else {\n        elSp.textContent = 'Max: ' + pEnv.toFixed(1) + ' W';\n      }\n    }\n\n    const dotOut = document.getElementById('led_dot_out');\n    const lblOut = document.getElementById('led_lbl_out');\n    if (dotOut && lblOut) {\n      dotOut.className = 'led-indicator ' + (outOn ? 'led-green' : 'led-red');\n      lblOut.textContent = outOn ? (d.sweeping ? 'SWEEP ACTIVE (ON)' : 'OUTPUT ON') : 'STANDBY (OFF)';\n      lblOut.style.color = outOn ? '#10b981' : '#f87171';\n    }\n\n    const dotCv = document.getElementById('led_dot_cv');\n    const dotCc = document.getElementById('led_dot_cc');\n    if (dotCv && dotCc) {\n      dotCv.className = 'led-indicator ' + (mode === 'CV' ? 'led-green' : '');\n      dotCc.className = 'led-indicator ' + (mode === 'CC' ? 'led-amber' : '');\n    }\n\n    const connEl = document.getElementById('inst_conn_text');\n    if (connEl && d.connText) {\n      connEl.textContent = d.connText;\n    }\n  });\n})(scope);\n</script>\n",
+    "storeOutMessages": true,
+    "fwdInMessages": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "x": 810,
+    "y": 80,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ui_template_panel2_controls",
+    "type": "ui_template",
+    "z": "tab_array_main_flow",
+    "group": "ui_group_panel2_controls",
+    "name": "Panel 2: Output & 10mV Setpoint Control",
+    "order": 1,
+    "width": "24",
+    "height": "4",
+    "format": "\n<style>\n  .ctrl-panel-grid {\n    display: grid;\n    grid-template-columns: 250px 1fr 1fr;\n    gap: 14px;\n    align-items: stretch;\n  }\n  @media (max-width: 1100px) {\n    .ctrl-panel-grid { grid-template-columns: 1fr; }\n  }\n  .ctrl-bay {\n    background: #13161b;\n    border: 1px solid #2b303a;\n    border-radius: 5px;\n    padding: 12px 14px;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    gap: 10px;\n    box-shadow: inset 0 1px 4px rgba(0,0,0,0.6);\n  }\n  .ctrl-bay-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    border-bottom: 1px solid #22262e;\n    padding-bottom: 6px;\n  }\n  .ctrl-bay-title {\n    font-size: 11.5px;\n    font-weight: 700;\n    letter-spacing: 1px;\n    color: #d1d5db;\n    text-transform: uppercase;\n  }\n  .inst-btn {\n    border: 1px solid #383f4b;\n    background: linear-gradient(180deg, #282d36 0%, #1d2128 100%);\n    color: #e5e7eb;\n    font-weight: 700;\n    font-size: 11.5px;\n    font-family: 'Consolas', 'Segoe UI', monospace;\n    padding: 7px 8px;\n    border-radius: 4px;\n    cursor: pointer;\n    transition: all 0.12s ease;\n    text-align: center;\n    user-select: none;\n  }\n  .inst-btn:hover {\n    border-color: #6b7280;\n    background: linear-gradient(180deg, #323843 0%, #252a33 100%);\n    color: #ffffff;\n  }\n  .inst-btn-inc {\n    border-color: #2f4f46;\n    background: linear-gradient(180deg, #1f3530 0%, #162622 100%);\n    color: #a7f3d0;\n  }\n  .inst-btn-inc:hover {\n    border-color: #10b981;\n    background: linear-gradient(180deg, #27443d 0%, #1c302b 100%);\n  }\n  .inst-preset-btn {\n    border: 1px solid #2b303a;\n    background: #1a1d23;\n    color: #9ca3af;\n    font-size: 11px;\n    font-family: 'Consolas', monospace;\n    font-weight: 700;\n    padding: 4px 8px;\n    border-radius: 3px;\n    cursor: pointer;\n  }\n  .inst-preset-btn:hover {\n    color: #f3f4f6;\n    border-color: #6b7280;\n    background: #262b34;\n  }\n  .inst-num-input {\n    background: #090b0d;\n    border: 1px solid #374151;\n    color: #10b981;\n    font-family: 'Consolas', monospace;\n    font-size: 19px;\n    font-weight: 700;\n    padding: 4px 10px;\n    border-radius: 4px;\n    width: 110px;\n    text-align: right;\n  }\n</style>\n\n<div class=\"carbon-chassis\">\n  <div class=\"ctrl-panel-grid\">\n    <!-- SECTION 1: MASTER OUTPUT & EMERGENCY CUTOFF -->\n    <div class=\"ctrl-bay\">\n      <div class=\"ctrl-bay-header\">\n        <span class=\"ctrl-bay-title\">MASTER OUTPUT CONTROL</span>\n        <span style=\"font-size:10px; color:#6b7280; font-family:monospace;\">STAGE 01</span>\n      </div>\n      <button id=\"btn_master_output\" onclick=\"window.instToggleOutput()\" style=\"width:100%; padding:12px 10px; border-radius:4px; border:1px solid #4b5563; background:linear-gradient(180deg, #262b33 0%, #1a1d23 100%); color:#e5e7eb; font-size:13px; font-weight:800; letter-spacing:1px; cursor:pointer;\">\n        ⚡ OUTPUT: STANDBY (OFF)\n      </button>\n      <button onclick=\"window.instSendCtrl('estop', false)\" style=\"width:100%; padding:9px 10px; border-radius:4px; border:1px solid #b91c1c; background:linear-gradient(180deg, #7f1d1d 0%, #450a0a 100%); color:#fecaca; font-size:12px; font-weight:800; letter-spacing:0.8px; cursor:pointer;\">\n        ⚠ EMERGENCY STOP (0V / OFF)\n      </button>\n    </div>\n\n    <!-- SECTION 2: VOLTAGE CONTROL (10 mV / 0.01 V STEP) -->\n    <div class=\"ctrl-bay\">\n      <div class=\"ctrl-bay-header\">\n        <span class=\"ctrl-bay-title\">VOLTAGE SETPOINT (U_SET • 10 mV STEP)</span>\n        <span style=\"font-size:10.5px; color:#10b981; font-family:Consolas,monospace;\">Resolution: 0.01 V</span>\n      </div>\n      <div style=\"display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;\">\n        <div style=\"display:flex; align-items:center; gap:8px;\">\n          <span style=\"font-size:11.5px; color:#9ca3af; font-weight:700;\">U_set [V]:</span>\n          <input id=\"inp_direct_v\" class=\"inst-num-input\" type=\"number\" min=\"0\" max=\"30\" step=\"0.01\" value=\"3.00\" onkeydown=\"if(event.key==='Enter') window.instApplyDirectV()\"/>\n          <button class=\"inst-btn inst-btn-inc\" onclick=\"window.instApplyDirectV()\">SET</button>\n        </div>\n        <div style=\"display:flex; gap:4px; flex-wrap:wrap;\">\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetV(0.00)\">0V</button>\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetV(3.30)\">3.3V</button>\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetV(5.00)\">5.0V</button>\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetV(9.00)\">9.0V</button>\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetV(12.00)\">12V</button>\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetV(24.00)\">24V</button>\n        </div>\n      </div>\n      <div style=\"display:grid; grid-template-columns:repeat(6, 1fr); gap:6px;\">\n        <button class=\"inst-btn\" onclick=\"window.instStepV(-1.00)\">-1.00 V</button>\n        <button class=\"inst-btn\" onclick=\"window.instStepV(-0.10)\">-0.10 V</button>\n        <button class=\"inst-btn\" onclick=\"window.instStepV(-0.01)\">-10 mV</button>\n        <button class=\"inst-btn inst-btn-inc\" onclick=\"window.instStepV(0.01)\">+10 mV</button>\n        <button class=\"inst-btn inst-btn-inc\" onclick=\"window.instStepV(0.10)\">+0.10 V</button>\n        <button class=\"inst-btn inst-btn-inc\" onclick=\"window.instStepV(1.00)\">+1.00 V</button>\n      </div>\n    </div>\n\n    <!-- SECTION 3: CURRENT LIMIT CONTROL (MIN 10 mA = 0.010 A) -->\n    <div class=\"ctrl-bay\">\n      <div class=\"ctrl-bay-header\">\n        <span class=\"ctrl-bay-title\">CURRENT LIMIT (I_MAX • CC PROTECTION)</span>\n        <span style=\"font-size:10.5px; color:#f59e0b; font-family:Consolas,monospace;\">Range: 0.010 – 3.000 A</span>\n      </div>\n      <div style=\"display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;\">\n        <div style=\"display:flex; align-items:center; gap:8px;\">\n          <span style=\"font-size:11.5px; color:#9ca3af; font-weight:700;\">I_max [A]:</span>\n          <input id=\"inp_direct_i\" class=\"inst-num-input\" style=\"color:#f59e0b;\" type=\"number\" min=\"0.010\" max=\"3.000\" step=\"0.010\" value=\"0.500\" onkeydown=\"if(event.key==='Enter') window.instApplyDirectI()\"/>\n          <button class=\"inst-btn inst-btn-inc\" onclick=\"window.instApplyDirectI()\">SET</button>\n        </div>\n        <div style=\"display:flex; gap:4px; flex-wrap:wrap;\">\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetI(0.05)\">50mA</button>\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetI(0.10)\">100mA</button>\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetI(0.25)\">250mA</button>\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetI(0.50)\">0.5A</button>\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetI(1.00)\">1.0A</button>\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetI(2.00)\">2.0A</button>\n          <button class=\"inst-preset-btn\" onclick=\"window.instSetI(3.00)\">3.0A</button>\n        </div>\n      </div>\n      <div style=\"display:grid; grid-template-columns:repeat(6, 1fr); gap:6px;\">\n        <button class=\"inst-btn\" onclick=\"window.instStepI(-0.50)\">-0.50 A</button>\n        <button class=\"inst-btn\" onclick=\"window.instStepI(-0.10)\">-0.10 A</button>\n        <button class=\"inst-btn\" onclick=\"window.instStepI(-0.01)\">-10 mA</button>\n        <button class=\"inst-btn inst-btn-inc\" onclick=\"window.instStepI(0.01)\">+10 mA</button>\n        <button class=\"inst-btn inst-btn-inc\" onclick=\"window.instStepI(0.10)\">+0.10 A</button>\n        <button class=\"inst-btn inst-btn-inc\" onclick=\"window.instStepI(0.50)\">+0.50 A</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<script>\n(function(scope) {\n  window.instState = window.instState || { outOn: false, setV: 3.00, setI: 0.500 };\n\n  window.instSendCtrl = function(topic, payload) {\n    scope.send({ topic: topic, payload: payload });\n  };\n\n  window.instToggleOutput = function() {\n    window.instState.outOn = !window.instState.outOn;\n    scope.send({ topic: 'output', payload: window.instState.outOn });\n  };\n\n  window.instSetV = function(v) {\n    const cleanV = Math.round(Math.max(0, Math.min(30, Number(v) || 0)) * 100) / 100;\n    window.instState.setV = cleanV;\n    const el = document.getElementById('inp_direct_v');\n    if (el) el.value = cleanV.toFixed(2);\n    scope.send({ topic: 'set_v', payload: cleanV });\n  };\n\n  window.instApplyDirectV = function() {\n    const el = document.getElementById('inp_direct_v');\n    if (el) window.instSetV(el.value);\n  };\n\n  window.instStepV = function(delta) {\n    const el = document.getElementById('inp_direct_v');\n    const cur = el ? (Number(el.value) || 0) : window.instState.setV;\n    window.instSetV(cur + Number(delta));\n  };\n\n  window.instSetI = function(i) {\n    const cleanI = Math.round(Math.max(0.010, Math.min(3.0, Number(i) || 0.010)) * 1000) / 1000;\n    window.instState.setI = cleanI;\n    const el = document.getElementById('inp_direct_i');\n    if (el) el.value = cleanI.toFixed(3);\n    scope.send({ topic: 'set_i', payload: cleanI });\n  };\n\n  window.instApplyDirectI = function() {\n    const el = document.getElementById('inp_direct_i');\n    if (el) window.instSetI(el.value);\n  };\n\n  window.instStepI = function(delta) {\n    const el = document.getElementById('inp_direct_i');\n    const cur = el ? (Number(el.value) || 0.1) : window.instState.setI;\n    window.instSetI(cur + Number(delta));\n  };\n\n  scope.$watch('msg', function(msg) {\n    if (!msg || !msg.payload) return;\n    const d = msg.payload;\n    if (d.outputOn !== undefined) {\n      window.instState.outOn = !!d.outputOn;\n      const btn = document.getElementById('btn_master_output');\n      if (btn) {\n        if (window.instState.outOn) {\n          btn.textContent = '⚡ OUTPUT ACTIVE (ON)';\n          btn.style.background = 'linear-gradient(180deg, #065f46 0%, #064e3b 100%)';\n          btn.style.borderColor = '#10b981';\n          btn.style.color = '#ecfdf5';\n          btn.style.boxShadow = '0 0 12px rgba(16, 185, 129, 0.35)';\n        } else {\n          btn.textContent = '⚡ OUTPUT: STANDBY (OFF)';\n          btn.style.background = 'linear-gradient(180deg, #262b33 0%, #1a1d23 100%)';\n          btn.style.borderColor = '#4b5563';\n          btn.style.color = '#e5e7eb';\n          btn.style.boxShadow = 'none';\n        }\n      }\n    }\n    if (d.setVoltage_V !== undefined) {\n      window.instState.setV = Number(d.setVoltage_V);\n      const elV = document.getElementById('inp_direct_v');\n      if (elV && document.activeElement !== elV) {\n        elV.value = window.instState.setV.toFixed(2);\n      }\n    }\n    if (d.maxCurrent_A !== undefined) {\n      window.instState.setI = Math.max(0.010, Number(d.maxCurrent_A));\n      const elI = document.getElementById('inp_direct_i');\n      if (elI && document.activeElement !== elI) {\n        elI.value = window.instState.setI.toFixed(3);\n      }\n    }\n  });\n})(scope);\n</script>\n",
+    "storeOutMessages": false,
+    "fwdInMessages": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "x": 190,
+    "y": 260,
+    "wires": [
+      [
+        "fn_control_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_template_iv_canvas",
+    "type": "ui_template",
+    "z": "tab_array_main_flow",
+    "group": "ui_group_iv_sweep",
+    "name": "Panel 3: I/V Characteristic & Curve Tracer",
+    "order": 1,
+    "width": "24",
+    "height": "11",
+    "format": "\n<style>\n  .sweep-param-grid {\n    display: grid;\n    grid-template-columns: repeat(4, 1fr);\n    gap: 12px;\n    margin-bottom: 10px;\n  }\n  @media (max-width: 1100px) {\n    .sweep-param-grid { grid-template-columns: repeat(2, 1fr); }\n  }\n  .sweep-card {\n    background: #13161b;\n    border: 1px solid #2b303a;\n    border-radius: 5px;\n    padding: 10px 12px;\n    display: flex;\n    flex-direction: column;\n    gap: 7px;\n  }\n  .sweep-card-lbl {\n    font-size: 11px;\n    font-weight: 700;\n    color: #9ca3af;\n    letter-spacing: 0.9px;\n    text-transform: uppercase;\n    display: flex;\n    justify-content: space-between;\n  }\n  .sweep-inp-row {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 6px;\n  }\n  .sweep-input {\n    background: #090b0d;\n    border: 1px solid #374151;\n    color: #e5e7eb;\n    font-family: 'Consolas', monospace;\n    font-size: 17px;\n    font-weight: 700;\n    padding: 4px 8px;\n    border-radius: 4px;\n    width: 100%;\n    text-align: right;\n  }\n  .unit-pill-row {\n    display: flex;\n    gap: 4px;\n    flex-wrap: wrap;\n  }\n  .unit-pill {\n    flex: 1;\n    min-width: 40px;\n    background: #1e222a;\n    border: 1px solid #323844;\n    color: #d1d5db;\n    font-size: 10.5px;\n    font-family: 'Consolas', monospace;\n    font-weight: 700;\n    padding: 4px 4px;\n    border-radius: 3px;\n    cursor: pointer;\n    text-align: center;\n  }\n  .unit-pill:hover {\n    background: #2d333f;\n    border-color: #6b7280;\n    color: #ffffff;\n  }\n</style>\n\n<div class=\"carbon-chassis\" style=\"display:flex; flex-direction:column; gap:10px;\">\n  <!-- SWEEP ANALYZER HEADER -->\n  <div style=\"display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #2a2f38; padding-bottom:8px;\">\n    <div style=\"display:flex; align-items:center; gap:10px;\">\n      <span style=\"font-weight:800; color:#e5e7eb; font-size:13px; letter-spacing:1.2px;\">I/V CHARACTERISTIC ANALYZER &amp; CURVE TRACER (10 mV RESOLUTION)</span>\n    </div>\n    <div id=\"iv_status_text\" style=\"color:#d1d5db; font-family:Consolas,monospace; font-size:12px; background:#101216; padding:4px 12px; border-radius:4px; border:1px solid #323842;\">\n      Ready — Select step resolution and start I/V characteristic sweep.\n    </div>\n  </div>\n\n  <!-- 4 PARAMETER CARDS WITH EXACT UNIT BUTTONS -->\n  <div class=\"sweep-param-grid\">\n    <!-- CARD 1: START V -->\n    <div class=\"sweep-card\">\n      <div class=\"sweep-card-lbl\">\n        <span>1. START VOLTAGE U_START (V)</span>\n        <span style=\"color:#9ca3af;\">10mV</span>\n      </div>\n      <div class=\"sweep-inp-row\">\n        <button class=\"unit-pill\" onclick=\"window.ivAdjust('startV', -0.10, 2)\">-0.1V</button>\n        <input id=\"iv_inp_start\" class=\"sweep-input\" type=\"number\" min=\"0\" max=\"30\" step=\"0.01\" value=\"0.00\" onchange=\"window.ivSyncInputs()\"/>\n        <button class=\"unit-pill\" onclick=\"window.ivAdjust('startV', 0.10, 2)\">+0.1V</button>\n      </div>\n      <div class=\"unit-pill-row\">\n        <button class=\"unit-pill\" onclick=\"window.ivSet('startV', 0.00, 2)\">0.0V</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('startV', 1.00, 2)\">1.0V</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('startV', 3.00, 2)\">3.0V</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('startV', 5.00, 2)\">5.0V</button>\n      </div>\n    </div>\n\n    <!-- CARD 2: STOP V -->\n    <div class=\"sweep-card\">\n      <div class=\"sweep-card-lbl\">\n        <span>2. STOP VOLTAGE U_STOP (V)</span>\n        <span style=\"color:#9ca3af;\">10mV</span>\n      </div>\n      <div class=\"sweep-inp-row\">\n        <button class=\"unit-pill\" onclick=\"window.ivAdjust('stopV', -0.50, 2)\">-0.5V</button>\n        <input id=\"iv_inp_stop\" class=\"sweep-input\" type=\"number\" min=\"0.01\" max=\"30\" step=\"0.01\" value=\"5.00\" onchange=\"window.ivSyncInputs()\"/>\n        <button class=\"unit-pill\" onclick=\"window.ivAdjust('stopV', 0.50, 2)\">+0.5V</button>\n      </div>\n      <div class=\"unit-pill-row\">\n        <button class=\"unit-pill\" onclick=\"window.ivSet('stopV', 3.30, 2)\">3.3V</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('stopV', 5.00, 2)\">5.0V</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('stopV', 12.00, 2)\">12V</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('stopV', 24.00, 2)\">24V</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('stopV', 30.00, 2)\">30V</button>\n      </div>\n    </div>\n\n    <!-- CARD 3: STEP DELTA U -->\n    <div class=\"sweep-card\" style=\"border-color:#3f4756;\">\n      <div class=\"sweep-card-lbl\">\n        <span style=\"color:#e5e7eb;\">3. STEP SIZE ΔU (UNITS)</span>\n        <span style=\"color:#10b981;\">FIXED STEP</span>\n      </div>\n      <div class=\"sweep-inp-row\">\n        <button class=\"unit-pill\" onclick=\"window.ivAdjust('stepV', -0.01, 2)\">-10mV</button>\n        <input id=\"iv_inp_step\" class=\"sweep-input\" style=\"color:#10b981;\" type=\"number\" min=\"0.01\" max=\"10\" step=\"0.01\" value=\"0.10\" onchange=\"window.ivSyncInputs()\"/>\n        <button class=\"unit-pill\" onclick=\"window.ivAdjust('stepV', 0.01, 2)\">+10mV</button>\n      </div>\n      <div class=\"unit-pill-row\">\n        <button class=\"unit-pill\" onclick=\"window.ivSet('stepV', 0.01, 2)\">10mV</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('stepV', 0.02, 2)\">20mV</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('stepV', 0.05, 2)\">50mV</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('stepV', 0.10, 2)\">100mV</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('stepV', 0.25, 2)\">0.25V</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('stepV', 0.50, 2)\">0.50V</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('stepV', 1.00, 2)\">1.00V</button>\n      </div>\n    </div>\n\n    <!-- CARD 4: STOP CURRENT LIMIT -->\n    <div class=\"sweep-card\">\n      <div class=\"sweep-card-lbl\">\n        <span style=\"color:#f59e0b;\">4. CUTOFF I_LIMIT (A)</span>\n        <span style=\"color:#f59e0b;\">MIN 10mA</span>\n      </div>\n      <div class=\"sweep-inp-row\">\n        <button class=\"unit-pill\" onclick=\"window.ivAdjust('limitI', -0.05, 3)\">-50mA</button>\n        <input id=\"iv_inp_limit\" class=\"sweep-input\" style=\"color:#f59e0b;\" type=\"number\" min=\"0.010\" max=\"3.0\" step=\"0.010\" value=\"0.500\" onchange=\"window.ivSyncInputs()\"/>\n        <button class=\"unit-pill\" onclick=\"window.ivAdjust('limitI', 0.05, 3)\">+50mA</button>\n      </div>\n      <div class=\"unit-pill-row\">\n        <button class=\"unit-pill\" onclick=\"window.ivSet('limitI', 0.05, 3)\">50mA</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('limitI', 0.10, 3)\">100mA</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('limitI', 0.25, 3)\">250mA</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('limitI', 0.50, 3)\">0.5A</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('limitI', 1.00, 3)\">1.0A</button>\n        <button class=\"unit-pill\" onclick=\"window.ivSet('limitI', 3.00, 3)\">3.0A</button>\n      </div>\n    </div>\n  </div>\n\n  <!-- SWEEP TRANSPORT & EXPORT BAR -->\n  <div style=\"display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;\">\n    <div style=\"display:flex; gap:10px; flex-wrap:wrap;\">\n      <button onclick=\"window.startCurveSweep()\" style=\"background:linear-gradient(180deg, #059669 0%, #065f46 100%); color:#ecfdf5; border:1px solid #10b981; padding:8px 20px; border-radius:4px; cursor:pointer; font-weight:800; font-size:12.5px; letter-spacing:0.8px;\">\n        ▶ START I/V SWEEP\n      </button>\n      <button onclick=\"window.stopCurveSweep()\" style=\"background:linear-gradient(180deg, #991b1b 0%, #7f1d1d 100%); color:#fef2f2; border:1px solid #ef4444; padding:8px 18px; border-radius:4px; cursor:pointer; font-weight:800; font-size:12.5px; letter-spacing:0.8px;\">\n        ■ STOP SWEEP (OFF)\n      </button>\n    </div>\n    <div style=\"display:flex; gap:10px; flex-wrap:wrap;\">\n      <button onclick=\"window.downloadIVPng()\" style=\"background:#262b33; color:#e5e7eb; border:1px solid #4b5563; padding:7px 14px; border-radius:4px; cursor:pointer; font-weight:700; font-size:11.5px;\">\n        📷 Export Graph (PNG)\n      </button>\n      <button onclick=\"window.downloadIVCsv()\" style=\"background:#262b33; color:#e5e7eb; border:1px solid #4b5563; padding:7px 14px; border-radius:4px; cursor:pointer; font-weight:700; font-size:11.5px;\">\n        💾 Export Data Points (CSV)\n      </button>\n    </div>\n  </div>\n\n  <!-- X-Y GRAPH & LIVE TABLE -->\n  <div style=\"display:flex; gap:14px; flex:1; min-height:280px;\">\n    <div style=\"flex:3; position:relative; background:#0b0d10; border:1px solid #282d35; border-radius:4px; padding:4px;\">\n      <canvas id=\"ivCurveCanvas\" width=\"780\" height=\"280\" style=\"width:100%; height:280px; display:block;\"></canvas>\n    </div>\n    <div style=\"flex:2; overflow-y:auto; max-height:288px; background:#0b0d10; border:1px solid #282d35; border-radius:4px; padding:8px;\">\n      <table style=\"width:100%; border-collapse:collapse; font-size:11.5px; color:#d1d5db; text-align:right; font-family:Consolas, monospace;\">\n        <thead>\n          <tr style=\"border-bottom:1px solid #374151; color:#9ca3af;\">\n            <th style=\"padding:4px;\">#</th>\n            <th style=\"padding:4px;\">U_set (V)</th>\n            <th style=\"padding:4px;\">U_meas (V)</th>\n            <th style=\"padding:4px;\">I_meas (A)</th>\n            <th style=\"padding:4px;\">P (W)</th>\n            <th style=\"padding:4px;\">Mode</th>\n          </tr>\n        </thead>\n        <tbody id=\"ivTableBody\"></tbody>\n      </table>\n    </div>\n  </div>\n</div>\n\n<script>\n(function(scope) {\n  window.ivPoints = window.ivPoints || [];\n\n  function getElVal(id, fallback) {\n    const el = document.getElementById(id);\n    if (!el) return fallback;\n    const n = Number(el.value);\n    return Number.isFinite(n) ? n : fallback;\n  }\n\n  window.ivSyncInputs = function() {\n    const cfg = {\n      startV: Math.round(Math.max(0, Math.min(30, getElVal('iv_inp_start', 0.0))) * 100) / 100,\n      stopV:  Math.round(Math.max(0.01, Math.min(30, getElVal('iv_inp_stop', 5.0))) * 100) / 100,\n      stepV:  Math.round(Math.max(0.01, Math.min(10, getElVal('iv_inp_step', 0.10))) * 100) / 100,\n      limitI: Math.round(Math.max(0.010, Math.min(3.0, getElVal('iv_inp_limit', 0.50))) * 1000) / 1000\n    };\n    const eStart = document.getElementById('iv_inp_start'); if (eStart) eStart.value = cfg.startV.toFixed(2);\n    const eStop  = document.getElementById('iv_inp_stop');  if (eStop)  eStop.value  = cfg.stopV.toFixed(2);\n    const eStep  = document.getElementById('iv_inp_step');  if (eStep)  eStep.value  = cfg.stepV.toFixed(2);\n    const eLim   = document.getElementById('iv_inp_limit'); if (eLim)   eLim.value   = cfg.limitI.toFixed(3);\n    scope.send({ topic: 'sweep_config', payload: cfg });\n    return cfg;\n  };\n\n  window.ivSet = function(field, val, decimals) {\n    const map = { startV: 'iv_inp_start', stopV: 'iv_inp_stop', stepV: 'iv_inp_step', limitI: 'iv_inp_limit' };\n    const el = document.getElementById(map[field]);\n    if (el) {\n      el.value = Number(val).toFixed(decimals);\n      window.ivSyncInputs();\n    }\n  };\n\n  window.ivAdjust = function(field, delta, decimals) {\n    const map = { startV: 'iv_inp_start', stopV: 'iv_inp_stop', stepV: 'iv_inp_step', limitI: 'iv_inp_limit' };\n    const el = document.getElementById(map[field]);\n    if (el) {\n      const factor = decimals === 3 ? 1000 : 100;\n      const next = Math.round(((Number(el.value) || 0) + Number(delta)) * factor) / factor;\n      el.value = next.toFixed(decimals);\n      window.ivSyncInputs();\n    }\n  };\n\n  window.startCurveSweep = function() {\n    const cfg = window.ivSyncInputs();\n    scope.send({ topic: 'sweep_run', payload: cfg });\n  };\n\n  window.stopCurveSweep = function() {\n    scope.send({ topic: 'sweep_stop', payload: 'stop' });\n  };\n\n  function drawIVChart(points) {\n    const canvas = document.getElementById('ivCurveCanvas');\n    if (!canvas) return;\n    const ctx = canvas.getContext('2d');\n    const W = canvas.width;\n    const H = canvas.height;\n    ctx.fillStyle = '#0b0d10';\n    ctx.fillRect(0, 0, W, H);\n\n    const padL = 62, padR = 28, padT = 26, padB = 34;\n    const plotW = W - padL - padR;\n    const plotH = H - padT - padB;\n\n    ctx.fillStyle = '#6b7280';\n    ctx.font = 'bold 11px Consolas, monospace';\n    ctx.textAlign = 'left';\n    ctx.fillText('ARRAY 3645A I/V CHARACTERISTIC • @grezoo', padL, 17);\n\n    ctx.strokeStyle = '#1b1f26';\n    ctx.lineWidth = 1;\n    for (let i = 0; i <= 5; i++) {\n      const y = padT + (plotH * i) / 5;\n      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();\n      const x = padL + (plotW * i) / 5;\n      ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, H - padB); ctx.stroke();\n    }\n\n    const maxV = points.length > 0 ? Math.max(0.5, ...points.map(p => Math.max(p.measuredVoltage_V, p.setVoltage_V))) : 5.0;\n    const maxI = points.length > 0 ? Math.max(0.05, ...points.map(p => p.measuredCurrent_A)) * 1.15 : 0.5;\n\n    ctx.fillStyle = '#9ca3af';\n    ctx.font = '11px Consolas, monospace';\n    ctx.textAlign = 'center';\n    for (let i = 0; i <= 5; i++) {\n      const vVal = ((maxV * i) / 5).toFixed(2);\n      const x = padL + (plotW * i) / 5;\n      ctx.fillText(vVal + ' V', x, H - 10);\n    }\n    ctx.textAlign = 'right';\n    ctx.fillStyle = '#10b981';\n    for (let i = 0; i <= 5; i++) {\n      const iVal = ((maxI * (5 - i)) / 5).toFixed(3);\n      const y = padT + (plotH * i) / 5 + 4;\n      ctx.fillText(iVal + ' A', padL - 8, y);\n    }\n\n    if (!points || points.length === 0) return;\n\n    ctx.strokeStyle = '#10b981';\n    ctx.lineWidth = 2.2;\n    ctx.beginPath();\n    points.forEach((pt, idx) => {\n      const x = padL + (pt.measuredVoltage_V / maxV) * plotW;\n      const y = padT + plotH - (pt.measuredCurrent_A / maxI) * plotH;\n      if (idx === 0) ctx.moveTo(x, y);\n      else ctx.lineTo(x, y);\n    });\n    ctx.stroke();\n\n    points.forEach((pt) => {\n      const x = padL + (pt.measuredVoltage_V / maxV) * plotW;\n      const y = padT + plotH - (pt.measuredCurrent_A / maxI) * plotH;\n      ctx.fillStyle = pt.mode === 'CC' ? '#ef4444' : '#f59e0b';\n      ctx.beginPath();\n      ctx.arc(x, y, 3.8, 0, Math.PI * 2);\n      ctx.fill();\n    });\n  }\n\n  function renderTable(points) {\n    const tbody = document.getElementById('ivTableBody');\n    if (!tbody) return;\n    tbody.innerHTML = points.map(p => '<tr style=\"border-bottom:1px solid #1b1f26;\">' +\n      '<td style=\"padding:3px 4px; color:#6b7280;\">' + p.step + '</td>' +\n      '<td style=\"padding:3px 4px;\">' + Number(p.setVoltage_V).toFixed(2) + '</td>' +\n      '<td style=\"padding:3px 4px; font-weight:700; color:#e5e7eb;\">' + Number(p.measuredVoltage_V).toFixed(2) + '</td>' +\n      '<td style=\"padding:3px 4px; font-weight:700; color:#10b981;\">' + Number(p.measuredCurrent_A).toFixed(3) + '</td>' +\n      '<td style=\"padding:3px 4px;\">' + Number(p.measuredPower_W).toFixed(2) + '</td>' +\n      '<td style=\"padding:3px 4px; font-weight:700; color:' + (p.mode === 'CC' ? '#ef4444' : '#9ca3af') + ';\">' + p.mode + '</td>' +\n    '</tr>').join('');\n  }\n\n  window.downloadIVPng = function() {\n    const canvas = document.getElementById('ivCurveCanvas');\n    if (!canvas) return;\n    const a = document.createElement('a');\n    a.href = canvas.toDataURL('image/png');\n    a.download = 'array3645A_iv_curve_grezoo_' + new Date().toISOString().replace(/[:.]/g, '-') + '.png';\n    a.click();\n  };\n\n  window.downloadIVCsv = function() {\n    const pts = window.ivPoints || [];\n    const header = 'Step,Timestamp,SetVoltage_V,MeasuredVoltage_V,MeasuredCurrent_A,MeasuredPower_W,Mode\\n';\n    const rows = pts.map(p => p.step + ',' + p.timestamp + ',' + Number(p.setVoltage_V).toFixed(2) + ',' + Number(p.measuredVoltage_V).toFixed(2) + ',' + Number(p.measuredCurrent_A).toFixed(3) + ',' + Number(p.measuredPower_W).toFixed(2) + ',' + p.mode).join('\\n');\n    const blob = new Blob([header + rows], { type: 'text/csv;charset=utf-8;' });\n    const a = document.createElement('a');\n    a.href = URL.createObjectURL(blob);\n    a.download = 'array3645A_iv_points_grezoo_' + new Date().toISOString().replace(/[:.]/g, '-') + '.csv';\n    a.click();\n  };\n\n  setTimeout(() => drawIVChart(window.ivPoints), 300);\n\n  scope.$watch('msg', function(msg) {\n    if (!msg || !msg.payload) return;\n    if (msg.payload.points) {\n      window.ivPoints = msg.payload.points;\n      drawIVChart(window.ivPoints);\n      renderTable(window.ivPoints);\n    }\n    if (msg.payload.status) {\n      const el = document.getElementById('iv_status_text');\n      if (el) el.textContent = msg.payload.status;\n    }\n  });\n})(scope);\n</script>\n",
+    "storeOutMessages": false,
+    "fwdInMessages": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "x": 490,
+    "y": 1120,
+    "wires": [
+      [
+        "fn_sweep_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_chart_trends",
+    "type": "ui_chart",
+    "z": "tab_array_main_flow",
+    "name": "Voltage & Current Trend Chart",
+    "group": "ui_group_trends",
+    "order": 1,
+    "width": "18",
+    "height": "5",
+    "label": "Live Voltage (V) & Current (A) Time-Domain Trend",
+    "chartType": "line",
+    "legend": "true",
+    "xformat": "HH:mm:ss",
+    "interpolate": "linear",
+    "nodata": "Waiting for telemetry stream...",
+    "dot": false,
+    "ymin": "0",
+    "ymax": "",
+    "removeOlder": "5",
+    "removeOlderPoints": "300",
+    "removeOlderUnit": "60",
+    "cutout": 0,
+    "useOneColor": false,
+    "useUTC": false,
+    "colors": [
+      "#10b981",
+      "#f59e0b",
+      "#38bdf8",
+      "#2ca02c",
+      "#98df8a",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "outputs": 1,
+    "useDifferentColor": false,
+    "x": 810,
+    "y": 380,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ui_switch_logging",
+    "type": "ui_switch",
+    "z": "tab_array_main_flow",
+    "name": "Continuous CSV Logging",
+    "label": "Auto CSV Logging",
+    "tooltip": "Continuous recording to logs/ folder",
+    "group": "ui_group_trends",
+    "order": 2,
+    "width": "6",
+    "height": "1",
+    "passthru": false,
+    "decouple": "false",
+    "topic": "csv_auto",
+    "style": "",
+    "onvalue": "true",
+    "onvalueType": "bool",
+    "onicon": "fiber_manual_record",
+    "oncolor": "#10b981",
+    "offvalue": "false",
+    "offvalueType": "bool",
+    "officon": "stop",
+    "offcolor": "#6b7280",
+    "x": 170,
+    "y": 600,
+    "wires": [
+      [
+        "fn_control_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_btn_csv_snapshot",
+    "type": "ui_button",
+    "z": "tab_array_main_flow",
+    "name": "Save CSV Snapshot",
+    "group": "ui_group_trends",
+    "order": 3,
+    "width": "6",
+    "height": "1",
+    "passthru": false,
+    "label": "Save Instant CSV Snapshot",
+    "tooltip": "Append current telemetry point to CSV file",
+    "color": "#f3f4f6",
+    "bgcolor": "#282d36",
+    "icon": "save",
+    "payload": "snapshot",
+    "payloadType": "str",
+    "topic": "csv_snapshot",
+    "x": 170,
+    "y": 640,
+    "wires": [
+      [
+        "fn_control_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_btn_clear_chart",
+    "type": "ui_button",
+    "z": "tab_array_main_flow",
+    "name": "Clear Chart",
+    "group": "ui_group_trends",
+    "order": 4,
+    "width": "6",
+    "height": "1",
+    "passthru": false,
+    "label": "Clear Trend Chart",
+    "tooltip": "Reset time-domain trend lines",
+    "color": "#d1d5db",
+    "bgcolor": "#1f242b",
+    "icon": "delete_sweep",
+    "payload": "[]",
+    "payloadType": "json",
+    "topic": "clear_chart",
+    "x": 500,
+    "y": 420,
+    "wires": [
+      [
+        "ui_chart_trends"
+      ]
+    ]
+  },
+  {
+    "id": "ui_text_log_status",
+    "type": "ui_text",
+    "z": "tab_array_main_flow",
+    "group": "ui_group_trends",
+    "order": 5,
+    "width": "6",
+    "height": "2",
+    "name": "Logger Status",
+    "label": "Logger Status:",
+    "format": "{{msg.payload}}",
+    "layout": "col-center",
+    "x": 800,
+    "y": 460,
+    "wires": []
+  },
+  {
+    "id": "ui_gauge_voltage",
+    "type": "ui_gauge",
+    "z": "tab_array_main_flow",
+    "name": "Measured Voltage (V)",
+    "group": "ui_group_diag_meters",
+    "order": 1,
+    "width": "8",
+    "height": "4",
+    "gtype": "gage",
+    "title": "Diagnostic Voltage (V)",
+    "label": "Volts",
+    "format": "{{value}}",
+    "min": 0,
+    "max": 30,
+    "colors": [
+      "#10b981",
+      "#f59e0b",
+      "#ef4444"
+    ],
+    "seg1": 20,
+    "seg2": 26,
+    "x": 800,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "ui_gauge_current",
+    "type": "ui_gauge",
+    "z": "tab_array_main_flow",
+    "name": "Measured Current (A)",
+    "group": "ui_group_diag_meters",
+    "order": 2,
+    "width": "8",
+    "height": "4",
+    "gtype": "gage",
+    "title": "Diagnostic Current (A)",
+    "label": "Amps",
+    "format": "{{value}}",
+    "min": 0,
+    "max": 3,
+    "colors": [
+      "#f59e0b",
+      "#fbbf24",
+      "#ef4444"
+    ],
+    "seg1": 2,
+    "seg2": 2.7,
+    "x": 800,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "ui_gauge_power",
+    "type": "ui_gauge",
+    "z": "tab_array_main_flow",
+    "name": "Output Power (W)",
+    "group": "ui_group_diag_meters",
+    "order": 3,
+    "width": "8",
+    "height": "4",
+    "gtype": "gage",
+    "title": "Diagnostic Power (W)",
+    "label": "Watts",
+    "format": "{{value}}",
+    "min": 0,
+    "max": 90,
+    "colors": [
+      "#38bdf8",
+      "#f59e0b",
+      "#ef4444"
+    ],
+    "seg1": 60,
+    "seg2": 80,
+    "x": 800,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "ui_btn_step_m001",
+    "type": "ui_button",
+    "z": "tab_array_main_flow",
+    "name": "-0.01 V",
+    "group": "ui_group_diag_meters",
+    "order": 4,
+    "width": "4",
+    "height": "1",
+    "passthru": false,
+    "label": "-0.01 V (-10mV)",
+    "color": "",
+    "bgcolor": "#282d36",
+    "icon": "",
+    "payload": "-0.01",
+    "payloadType": "num",
+    "topic": "step_v",
+    "x": 160,
+    "y": 420,
+    "wires": [
+      [
+        "fn_control_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_btn_step_p001",
+    "type": "ui_button",
+    "z": "tab_array_main_flow",
+    "name": "+0.01 V",
+    "group": "ui_group_diag_meters",
+    "order": 5,
+    "width": "4",
+    "height": "1",
+    "passthru": false,
+    "label": "+0.01 V (+10mV)",
+    "color": "",
+    "bgcolor": "#1f3530",
+    "icon": "",
+    "payload": "0.01",
+    "payloadType": "num",
+    "topic": "step_v",
+    "x": 160,
+    "y": 460,
+    "wires": [
+      [
+        "fn_control_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_switch_mock_mode",
+    "type": "ui_switch",
+    "z": "tab_array_main_flow",
+    "name": "Simulator (Mock) Mode",
+    "label": "Virtual Simulator (Mock) Mode",
+    "tooltip": "ON: Virtual Simulator | OFF: Physical RS232 COM Port",
+    "group": "ui_group_comm",
+    "order": 1,
+    "width": "12",
+    "height": "1",
+    "passthru": false,
+    "decouple": "false",
+    "topic": "set_mock",
+    "style": "",
+    "onvalue": "true",
+    "onvalueType": "bool",
+    "onicon": "memory",
+    "oncolor": "#10b981",
+    "offvalue": "false",
+    "offvalueType": "bool",
+    "officon": "settings_input_hdmi",
+    "offcolor": "#f59e0b",
+    "x": 160,
+    "y": 720,
+    "wires": [
+      [
+        "fn_settings_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_dropdown_com",
+    "type": "ui_dropdown",
+    "z": "tab_array_main_flow",
+    "name": "Serial COM Port",
+    "label": "Serial Port:",
+    "tooltip": "Select USB-RS232 (Array 3311/3312) adapter COM port",
+    "place": "COM3",
+    "group": "ui_group_comm",
+    "order": 2,
+    "width": "6",
+    "height": "1",
+    "passthru": false,
+    "multiple": false,
+    "options": [
+      {
+        "label": "COM1",
+        "value": "COM1",
+        "type": "str"
+      },
+      {
+        "label": "COM2",
+        "value": "COM2",
+        "type": "str"
+      },
+      {
+        "label": "COM3 (FTDI USB-RS232)",
+        "value": "COM3",
+        "type": "str"
+      },
+      {
+        "label": "COM4",
+        "value": "COM4",
+        "type": "str"
+      },
+      {
+        "label": "COM5",
+        "value": "COM5",
+        "type": "str"
+      },
+      {
+        "label": "COM6",
+        "value": "COM6",
+        "type": "str"
+      }
+    ],
+    "payload": "",
+    "topic": "set_com",
+    "x": 150,
+    "y": 760,
+    "wires": [
+      [
+        "fn_settings_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_dropdown_baud",
+    "type": "ui_dropdown",
+    "z": "tab_array_main_flow",
+    "name": "Baud Rate",
+    "label": "Baud Rate:",
+    "tooltip": "Serial baud rate (Array 3645A default: 19200 baud)",
+    "place": "19200",
+    "group": "ui_group_comm",
+    "order": 3,
+    "width": "6",
+    "height": "1",
+    "passthru": false,
+    "multiple": false,
+    "options": [
+      {
+        "label": "4800 baud",
+        "value": 4800,
+        "type": "num"
+      },
+      {
+        "label": "9600 baud",
+        "value": 9600,
+        "type": "num"
+      },
+      {
+        "label": "19200 baud (Array 3645A Active)",
+        "value": 19200,
+        "type": "num"
+      },
+      {
+        "label": "38400 baud",
+        "value": 38400,
+        "type": "num"
+      }
+    ],
+    "payload": "",
+    "topic": "set_baud",
+    "x": 150,
+    "y": 800,
+    "wires": [
+      [
+        "fn_settings_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_numeric_address",
+    "type": "ui_numeric",
+    "z": "tab_array_main_flow",
+    "name": "Device Address",
+    "label": "Device Address (0..254):",
+    "tooltip": "Instrument bus address configured in menu (default: 0)",
+    "group": "ui_group_comm",
+    "order": 4,
+    "width": "6",
+    "height": "1",
+    "passthru": false,
+    "topic": "set_address",
+    "format": "{{value}}",
+    "min": 0,
+    "max": "254",
+    "step": 1,
+    "x": 160,
+    "y": 840,
+    "wires": [
+      [
+        "fn_settings_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_numeric_poll",
+    "type": "ui_numeric",
+    "z": "tab_array_main_flow",
+    "name": "Polling Interval (ms)",
+    "label": "Polling Interval (ms):",
+    "tooltip": "Telemetry refresh interval (200ms - 2000ms)",
+    "group": "ui_group_comm",
+    "order": 5,
+    "width": "6",
+    "height": "1",
+    "passthru": false,
+    "topic": "set_poll",
+    "format": "{{value}} ms",
+    "min": "200",
+    "max": "2000",
+    "step": "100",
+    "x": 170,
+    "y": 880,
+    "wires": [
+      [
+        "fn_settings_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_numeric_limit_v",
+    "type": "ui_numeric",
+    "z": "tab_array_main_flow",
+    "name": "Software Voltage Limit (V)",
+    "label": "Max Safety Voltage (V):",
+    "tooltip": "Software upper voltage clamp for over-voltage protection",
+    "group": "ui_group_safety",
+    "order": 1,
+    "width": "6",
+    "height": "1",
+    "passthru": false,
+    "topic": "limit_v",
+    "format": "{{value | number:1}} V",
+    "min": "1",
+    "max": "30",
+    "step": "1",
+    "x": 190,
+    "y": 940,
+    "wires": [
+      [
+        "fn_settings_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_numeric_limit_i",
+    "type": "ui_numeric",
+    "z": "tab_array_main_flow",
+    "name": "Software Current Limit (A)",
+    "label": "Max Safety Current (A):",
+    "tooltip": "Software upper current limit clamp",
+    "group": "ui_group_safety",
+    "order": 2,
+    "width": "6",
+    "height": "1",
+    "passthru": false,
+    "topic": "limit_i",
+    "format": "{{value | number:2}} A",
+    "min": "0.1",
+    "max": "3.0",
+    "step": "0.1",
+    "x": 180,
+    "y": 980,
+    "wires": [
+      [
+        "fn_settings_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_slider_mock_load",
+    "type": "ui_slider",
+    "z": "tab_array_main_flow",
+    "name": "Simulated Load Resistance (Ohm)",
+    "label": "Virtual Load (Ohm) [Mock]:",
+    "tooltip": "Simulated load resistance in Mock mode (Ohm's Law: I = U / R)",
+    "group": "ui_group_safety",
+    "order": 3,
+    "width": "12",
+    "height": "1",
+    "passthru": false,
+    "outs": "all",
+    "topic": "mock_load",
+    "min": "1",
+    "max": "100",
+    "step": "1",
+    "x": 200,
+    "y": 1020,
+    "wires": [
+      [
+        "fn_settings_handler"
+      ]
+    ]
+  },
+  {
+    "id": "ui_text_comm_info",
+    "type": "ui_text",
+    "z": "tab_array_main_flow",
+    "group": "ui_group_comm",
+    "order": 6,
+    "width": "12",
+    "height": "2",
+    "name": "Connection Diagnostics",
+    "label": "Connection Diagnostics:",
+    "format": "{{msg.payload}}",
+    "layout": "col-center",
+    "x": 770,
+    "y": 780,
+    "wires": []
+  },
+  {
+    "id": "inject_startup_init",
+    "type": "inject",
+    "z": "tab_array_main_flow",
+    "name": "Startup & Cyclic Telemetry (500ms)",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "0.5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "0.3",
+    "topic": "poll_tick",
+    "payload": "",
+    "payloadType": "date",
+    "x": 190,
+    "y": 60,
+    "wires": [
+      [
+        "fn_telemetry_poller"
+      ]
+    ]
+  },
+  {
+    "id": "fn_telemetry_poller",
+    "type": "function",
+    "z": "tab_array_main_flow",
+    "name": "Telemetry Poller & UI Dispatcher",
+    "func": "const ctrl = global.get('arrayPower');\nif (!ctrl) return null;\n\nif (!context.get('initialized')) {\n    context.set('initialized', true);\n    ctrl.init({\n        isMock: false,\n        portName: 'COM3',\n        baudRate: 19200,\n        address: 0x00,\n        pollingIntervalMs: 0,\n        limits: { maxVoltage_V: 30.0, maxCurrent_A: 3.0, maxPower_W: 90.0 }\n    });\n}\n\nif (ctrl.sweepState && ctrl.sweepState.running) {\n    return null;\n}\nawait ctrl._pollTelemetry();\nconst t = ctrl.getTelemetry();\nif (!t) return null;\n\nconst v = Number((t.voltage_V || 0).toFixed(2));\nconst i = Number((t.current_A || 0).toFixed(3));\nconst p = Number((t.power_W || 0).toFixed(2));\nconst setV = Number((ctrl.currentSetVoltage_V ?? t.setVoltage_V ?? 0).toFixed(2));\nconst maxI = Math.max(0.010, Number((ctrl.currentSetLimit_A ?? t.maxCurrent_A ?? 0.1).toFixed(3)));\nconst mode = (t.state && t.state.mode) ? t.state.mode : 'CV';\nconst outOn = !!(t.state && t.state.outputOn);\nconst sweeping = !!(ctrl.sweepState && ctrl.sweepState.running);\nconst connText = ctrl.isMock ? 'SIMULATOR (MOCK)' : ('HW 3645A: ' + ctrl.portName + ' @ ' + ctrl.baudRate);\n\nconst instPayload = {\n    voltage_V: v,\n    current_A: i,\n    power_W: p,\n    setVoltage_V: setV,\n    maxCurrent_A: maxI,\n    mode: mode,\n    outputOn: outOn,\n    sweeping: sweeping,\n    connText: connText\n};\n\n// CSV Auto Logging\nlet logMsg = null;\nconst autoLog = flow.get('csvAutoLog') || false;\nif (autoLog) {\n    const fs = global.get('fs');\n    const path = global.get('path');\n    const logsDir = global.get('logsDir');\n    if (fs && path && logsDir) {\n        let logFile = flow.get('currentLogFile');\n        if (!logFile) {\n            const ts = new Date().toISOString().replace(/[:.]/g, '-');\n            logFile = path.join(logsDir, 'array_telemetry_' + ts + '.csv');\n            flow.set('currentLogFile', logFile);\n            fs.writeFileSync(logFile, 'Timestamp,Voltage_V,Current_A,Power_W,Mode,OutputState\\n', 'utf8');\n        }\n        const row = new Date().toISOString() + ',' + v.toFixed(2) + ',' + i.toFixed(3) + ',' + p.toFixed(2) + ',' + mode + ',' + (outOn ? 'ON' : 'OFF') + '\\n';\n        fs.appendFileSync(logFile, row, 'utf8');\n        logMsg = { payload: 'Recording: ' + path.basename(logFile) };\n    }\n}\n\nreturn [\n    { payload: instPayload },\n    { payload: instPayload },\n    { payload: v },\n    { payload: i },\n    { payload: p },\n    [\n        { topic: 'Voltage (V)', payload: v },\n        { topic: 'Current (A)', payload: i }\n    ],\n    logMsg\n];",
+    "outputs": 7,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 160,
+    "wires": [
+      [
+        "ui_template_panel1_meters"
+      ],
+      [
+        "ui_template_panel2_controls"
+      ],
+      [
+        "ui_gauge_voltage"
+      ],
+      [
+        "ui_gauge_current"
+      ],
+      [
+        "ui_gauge_power"
+      ],
+      [
+        "ui_chart_trends"
+      ],
+      [
+        "ui_text_log_status"
+      ]
+    ]
+  },
+  {
+    "id": "fn_control_handler",
+    "type": "function",
+    "z": "tab_array_main_flow",
+    "name": "Front Panel Command Handler",
+    "func": "const ctrl = global.get('arrayPower');\nif (!ctrl) return null;\n\nconst topic = msg.topic;\nconst val = msg.payload;\nlet logStatusMsg = null;\n\ntry {\n    if (topic === 'output') {\n        await ctrl.setOutput(Boolean(val));\n    } else if (topic === 'estop') {\n        ctrl.stopIVSweep();\n        await ctrl.setOutput(false);\n    } else if (topic === 'set_v') {\n        const targetV = Math.round(Math.max(0, Math.min(ctrl.safetyLimits.maxVoltage_V, Number(val) || 0)) * 100) / 100;\n        await ctrl.setVoltage(targetV);\n    } else if (topic === 'set_i') {\n        const targetI = Math.round(Math.max(0.010, Math.min(ctrl.safetyLimits.maxCurrent_A, Number(val) || 0.5)) * 1000) / 1000;\n        await ctrl.setCurrentLimit(targetI);\n    } else if (topic === 'step_v') {\n        const delta = Number(val) || 0;\n        const currentSetV = ctrl.currentSetVoltage_V || 0;\n        const nextV = Math.round(Math.max(0, Math.min(ctrl.safetyLimits.maxVoltage_V, currentSetV + delta)) * 100) / 100;\n        await ctrl.setVoltage(nextV);\n    } else if (topic === 'csv_auto') {\n        const enable = Boolean(val);\n        flow.set('csvAutoLog', enable);\n        if (!enable) {\n            flow.set('currentLogFile', null);\n            logStatusMsg = { payload: 'Auto CSV logging stopped.' };\n        } else {\n            logStatusMsg = { payload: 'Auto CSV logging started...' };\n        }\n    } else if (topic === 'csv_snapshot') {\n        const fs = global.get('fs');\n        const path = global.get('path');\n        const logsDir = global.get('logsDir');\n        const t = ctrl.getTelemetry();\n        if (fs && path && logsDir && t) {\n            const snapFile = path.join(logsDir, 'array_snapshots.csv');\n            if (!fs.existsSync(snapFile)) {\n                fs.writeFileSync(snapFile, 'Timestamp,Voltage_V,Current_A,Power_W,Mode,OutputState\\n', 'utf8');\n            }\n            const row = new Date().toISOString() + ',' + Number(t.voltage_V).toFixed(2) + ',' + Number(t.current_A).toFixed(3) + ',' + Number(t.power_W).toFixed(2) + ',' + t.state.mode + ',' + (t.state.outputOn ? 'ON' : 'OFF') + '\\n';\n            fs.appendFileSync(snapFile, row, 'utf8');\n            logStatusMsg = { payload: 'Snapshot saved: logs/array_snapshots.csv (' + new Date().toLocaleTimeString() + ')' };\n        }\n    }\n} catch (err) {\n    logStatusMsg = { payload: 'Error: ' + err.message };\n}\n\nconst t = ctrl.getTelemetry();\nconst instPayload = {\n    voltage_V: Number((t.voltage_V || 0).toFixed(2)),\n    current_A: Number((t.current_A || 0).toFixed(3)),\n    power_W: Number((t.power_W || 0).toFixed(2)),\n    setVoltage_V: Number((ctrl.currentSetVoltage_V ?? 0).toFixed(2)),\n    maxCurrent_A: Math.max(0.010, Number((ctrl.currentSetLimit_A ?? 0.5).toFixed(3))),\n    mode: t.state?.mode || 'CV',\n    outputOn: !!(t.state?.outputOn),\n    connText: ctrl.isMock ? 'SIMULATOR (MOCK)' : ('HW 3645A: ' + ctrl.portName + ' @ ' + ctrl.baudRate)\n};\n\nreturn [{ payload: instPayload }, { payload: instPayload }, logStatusMsg];",
+    "outputs": 3,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 300,
+    "wires": [
+      [
+        "ui_template_panel1_meters"
+      ],
+      [
+        "ui_template_panel2_controls"
+      ],
+      [
+        "ui_text_log_status"
+      ]
+    ]
+  },
+  {
+    "id": "fn_sweep_handler",
+    "type": "function",
+    "z": "tab_array_main_flow",
+    "name": "I/V Curve Tracer Engine & Live Meter Driver",
+    "func": "const ctrl = global.get('arrayPower');\nif (!ctrl) return null;\n\nconst topic = msg.topic;\nconst val = msg.payload;\n\nif (topic === 'sweep_config' && val && typeof val === 'object') {\n    flow.set('sweepStartV', Number(val.startV ?? 0.0));\n    flow.set('sweepStopV',  Number(val.stopV  ?? 5.0));\n    flow.set('sweepStepV',  Number(val.stepV  ?? 0.10));\n    flow.set('sweepLimitI', Math.max(0.010, Number(val.limitI ?? 0.50)));\n    return null;\n}\n\nif (topic === 'sweep_stop') {\n    await ctrl.stopIVSweep();\n    return [\n        { payload: { status: 'Sweep stopped (Output OFF).', points: ctrl.sweepState.points || [] } },\n        null,\n        null,\n        [\n            { topic: 'Voltage (V)', payload: 0.0 },\n            { topic: 'Current (A)', payload: 0.0 }\n        ]\n    ];\n}\n\nif (topic === 'sweep_run') {\n    if (val && typeof val === 'object') {\n        flow.set('sweepStartV', Number(val.startV ?? 0.0));\n        flow.set('sweepStopV',  Number(val.stopV  ?? 5.0));\n        flow.set('sweepStepV',  Number(val.stepV  ?? 0.10));\n        flow.set('sweepLimitI', Math.max(0.010, Number(val.limitI ?? 0.50)));\n    }\n    const startV = Math.round((flow.get('sweepStartV') ?? 0.0) * 100) / 100;\n    const stopV  = Math.round((flow.get('sweepStopV')  ?? 5.0) * 100) / 100;\n    const stepV  = Math.max(0.01, Math.round((flow.get('sweepStepV') ?? 0.10) * 100) / 100);\n    const limitI = Math.max(0.010, Math.round((flow.get('sweepLimitI') ?? 0.50) * 1000) / 1000);\n\n    node.send([\n        { payload: { status: 'Starting Sweep: ' + startV.toFixed(2) + 'V -> ' + stopV.toFixed(2) + 'V (ΔU=' + stepV.toFixed(2) + 'V, I_lim=' + limitI.toFixed(3) + 'A)...', points: [] } },\n        null,\n        null,\n        null\n    ]);\n\n    try {\n        const res = await ctrl.runIVSweep({\n            startV,\n            stopV,\n            stepV,\n            currentLimit_A: limitI,\n            dwellMs: ctrl.isMock ? 200 : 450,\n            onPoint: (pt) => {\n                const liveMeter = {\n                    voltage_V: pt.measuredVoltage_V,\n                    current_A: pt.measuredCurrent_A,\n                    power_W: pt.measuredPower_W,\n                    setVoltage_V: pt.setVoltage_V,\n                    maxCurrent_A: limitI,\n                    mode: pt.mode,\n                    outputOn: true,\n                    sweeping: true,\n                    connText: ctrl.isMock ? 'SIMULATOR (SWEEP)' : ('HW 3645A (SWEEP #' + pt.step + ')')\n                };\n                node.send([\n                    {\n                        payload: {\n                            status: 'Step [#' + pt.step + ']: U_set=' + pt.setVoltage_V.toFixed(2) + 'V | U_meas=' + pt.measuredVoltage_V.toFixed(2) + 'V | I=' + pt.measuredCurrent_A.toFixed(3) + 'A (' + pt.mode + ')',\n                            points: ctrl.sweepState.points.slice()\n                        }\n                    },\n                    { payload: liveMeter },\n                    { payload: pt.measuredVoltage_V },\n                    [\n                        { topic: 'Voltage (V)', payload: pt.measuredVoltage_V },\n                        { topic: 'Current (A)', payload: pt.measuredCurrent_A }\n                    ]\n                ]);\n            }\n        });\n\n        const fs = global.get('fs');\n        const path = global.get('path');\n        const logsDir = global.get('logsDir');\n        let savedFileMsg = '';\n        if (fs && path && logsDir && res.points.length > 0) {\n            const ts = new Date().toISOString().replace(/[:.]/g, '-');\n            const csvPath = path.join(logsDir, 'iv_sweep_' + ts + '.csv');\n            const header = 'Step,Timestamp,SetVoltage_V,MeasuredVoltage_V,MeasuredCurrent_A,MeasuredPower_W,Mode\\n';\n            const body = res.points.map(p => p.step + ',' + p.timestamp + ',' + p.setVoltage_V.toFixed(2) + ',' + p.measuredVoltage_V.toFixed(2) + ',' + p.measuredCurrent_A.toFixed(3) + ',' + p.measuredPower_W.toFixed(2) + ',' + p.mode).join('\\n') + '\\n';\n            fs.writeFileSync(csvPath, header + body, 'utf8');\n            savedFileMsg = ' | Saved: logs/' + path.basename(csvPath);\n        }\n\n        return [\n            {\n                payload: {\n                    status: 'Sweep completed (' + res.points.length + ' pts, status: ' + res.stopReason + ')' + savedFileMsg,\n                    points: res.points\n                }\n            },\n            null,\n            null,\n            [\n                { topic: 'Voltage (V)', payload: 0.0 },\n                { topic: 'Current (A)', payload: 0.0 }\n            ]\n        ];\n    } catch (err) {\n        return [\n            {\n                payload: {\n                    status: 'Sweep error: ' + err.message,\n                    points: ctrl.sweepState.points || []\n                }\n            },\n            null,\n            null,\n            null\n        ];\n    }\n}\nreturn null;",
+    "outputs": 4,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 810,
+    "y": 1120,
+    "wires": [
+      [
+        "ui_template_iv_canvas"
+      ],
+      [
+        "ui_template_panel1_meters"
+      ],
+      [
+        "ui_gauge_voltage"
+      ],
+      [
+        "ui_chart_trends"
+      ]
+    ]
+  },
+  {
+    "id": "fn_settings_handler",
+    "type": "function",
+    "z": "tab_array_main_flow",
+    "name": "Configuration Settings Handler",
+    "func": "const ctrl = global.get('arrayPower');\nif (!ctrl) return null;\n\nconst topic = msg.topic;\nconst val = msg.payload;\nlet info = '';\n\ntry {\n    if (topic === 'set_mock') {\n        await ctrl.setMockMode(Boolean(val));\n        info = 'Mode switched: ' + (ctrl.isMock ? 'Virtual Simulator (Mock)' : 'Physical Serial Port (' + ctrl.portName + ')');\n    } else if (topic === 'set_com') {\n        ctrl.portName = String(val);\n        ctrl.serialTransport.portName = String(val);\n        if (!ctrl.isMock) {\n            await ctrl.setMockMode(false);\n        }\n        info = 'Serial COM port selected: ' + ctrl.portName;\n    } else if (topic === 'set_baud') {\n        ctrl.baudRate = Number(val) || 19200;\n        ctrl.serialTransport.baudRate = ctrl.baudRate;\n        info = 'Baud rate set to: ' + ctrl.baudRate;\n    } else if (topic === 'set_address') {\n        ctrl.address = Number(val) & 0xFF;\n        if (ctrl.mockTransport && ctrl.mockTransport.mock) {\n            ctrl.mockTransport.mock.address = ctrl.address;\n        }\n        info = 'Device address set to: ' + ctrl.address + ' (0x' + ctrl.address.toString(16).toUpperCase().padStart(2, '0') + ')';\n    } else if (topic === 'set_poll') {\n        ctrl.pollingIntervalMs = Math.max(100, Number(val) || 500);\n        info = 'Polling interval set to: ' + ctrl.pollingIntervalMs + ' ms';\n    } else if (topic === 'limit_v') {\n        ctrl.setSafetyLimits({ maxVoltage_V: Number(val) || 30.0 });\n        info = 'Software voltage limit: ' + ctrl.safetyLimits.maxVoltage_V + ' V';\n    } else if (topic === 'limit_i') {\n        ctrl.setSafetyLimits({ maxCurrent_A: Number(val) || 3.0 });\n        info = 'Software current limit: ' + ctrl.safetyLimits.maxCurrent_A + ' A';\n    } else if (topic === 'mock_load') {\n        const ohms = Math.max(0.1, Number(val) || 10.0);\n        ctrl.setVirtualLoad(ohms);\n        info = 'Simulated load resistance: ' + ohms + ' Ω';\n    }\n} catch (err) {\n    info = 'Configuration error: ' + err.message;\n}\n\nreturn { payload: info };",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 470,
+    "y": 780,
+    "wires": [
+      [
+        "ui_text_comm_info"
+      ]
+    ]
+  }
+]

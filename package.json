@@ -1,0 +1,16 @@
+{
+  "name": "array-364x-power-controller",
+  "version": "1.2.0",
+  "description": "Array 364X / 3645A Programmable DC Power Supply Precision Lab Instrument Node-RED Controller, I/V Curve Tracer & CSV Logger",
+  "main": "lib/power_controller.js",
+  "scripts": {
+    "start": "start_array_power.bat",
+    "test": "\"D:\\programok_kiírni\\IO-LINK\\NODERED\\node.exe\" --test test/test_protocol.js test/test_mock.js test/test_controller.js test/test_e2e_requirements.js"
+  },
+  "author": "@grezoo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grezoo/array-364x-power-controller.git"
+  },
+  "license": "MIT"
+}
